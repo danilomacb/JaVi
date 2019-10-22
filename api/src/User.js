@@ -15,10 +15,10 @@ const UserSchema = new mongoose.Schema({
 
 const saltRounds = 10;
 
-UserSchema.pre("save", next => {
+UserSchema.pre("save", function(next) {
   if (this.isNew || this.isModified("password")) {
     const document = this;
-    bcrypt.hash(document.password, saltRounds, (err, hashedPassword) => {
+    bcrypt.hash(document.password, saltRounds, function(err, hashedPassword) {
       if (err) {
         next(err);
       } else {

@@ -1,20 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const User = require("./User");
 
 const app = express();
 
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 const mongo_uri = "mongodb://localhost:27017/auth";
+const port = 3001;
 
 mongoose.connect(mongo_uri, function(err) {
   console.log(`Successfully connected to ${mongo_uri}`);
 });
-
-const port = 3001;
-
-app.use(cors());
 
 app.get("/api/home", function(req, res) {
   res.send("Welcome!");
