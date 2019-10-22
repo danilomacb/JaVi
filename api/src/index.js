@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const user = require("./User");
+const User = require("./User");
 
 const app = express();
 
-const mongo_uri = "mongodb://localhost/auth";
+const mongo_uri = "mongodb://localhost:27017/auth";
 
 mongoose.connect(mongo_uri, function(err) {
   console.log(`Successfully connected to ${mongo_uri}`);
@@ -22,6 +22,18 @@ app.get("/api/home", function(req, res) {
 
 app.get("/api/secret", function(req, res) {
   res.send("The password is potato");
+});
+
+app.post("/api/register", function(req, res) {
+  const { email, password } = req.body;
+  const user = new User({ email, password });
+  user.save(function(err) {
+    if (err) {
+      res.status(500).send("Error registering new user please try again.");
+    } else {
+      res.status(200).send("Welcome to the club!");
+    }
+  });
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
