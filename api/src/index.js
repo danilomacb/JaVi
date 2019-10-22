@@ -3,14 +3,17 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const User = require("./User");
+const withAuth = require("./middleware");
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const mongo_uri = "mongodb://localhost:27017/auth";
 const port = 3001;
@@ -23,7 +26,7 @@ app.get("/api/home", function(req, res) {
   res.send("Welcome!");
 });
 
-app.get("/api/secret", function(req, res) {
+app.get("/api/secret", withAuth, function(req, res) {
   res.send("The password is potato");
 });
 
