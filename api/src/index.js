@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const user = require('./User');
 
@@ -12,6 +13,8 @@ mongoose.connect(mongo_uri, function(err) {
 });
 
 const port = 3001;
+
+app.use(cors());
 
 app.get('/api/home', function(req, res) {
     res.send('Welcome!');
