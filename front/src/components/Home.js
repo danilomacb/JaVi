@@ -10,7 +10,7 @@ export default class Home extends Component {
   }
   componentDidMount() {
     //GET message from server using fetch api
-    fetch("http://localhost:3001/api/home")
+    fetch("/api/home")
       .then(res => res.text())
       .then(res => this.setState({ message: res }));
   }
