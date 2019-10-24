@@ -14,7 +14,7 @@ function Login({ history, match }) {
         user.password = user.password.value;
 
         if (match.path === "/entrar") {
-          fetch("/api/authenticate", {
+          fetch("/user/authenticate", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
@@ -36,7 +36,7 @@ function Login({ history, match }) {
         }
 
         if (match.path === "/cadastrar") {
-          fetch("/api/register", {
+          fetch("/user/register", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
