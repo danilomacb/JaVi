@@ -12,15 +12,18 @@ function Navigation() {
       <Navbar.Collapse id="navigation">
         <Nav className="mr-auto">
           <Link to="/" className="nav-link">
-            Home
+            Início
           </Link>
-          <Link to="/secret" className="nav-link">
-            Secret
+          <Link to="/segredo" className="nav-link">
+            Segredo
           </Link>
         </Nav>
         <Nav>
-          <Link to="/login" className="nav-link">
-            Login
+          <Link to="/cadastrar" className="nav-link">
+            Cadastrar
+          </Link>
+          <Link to="/entrar" className="nav-link">
+            Entrar
           </Link>
         </Nav>
       </Navbar.Collapse>
