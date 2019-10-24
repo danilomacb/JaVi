@@ -4,7 +4,7 @@ import { Navbar, Nav } from "react-bootstrap";
 
 function Navigation() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" className="my-nav" variant="dark">
       <Link to="/" className="navbar-brand">
         Será que eu já vi essa merda?
       </Link>
