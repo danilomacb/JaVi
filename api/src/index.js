@@ -20,10 +20,6 @@ mongoose.connect(mongo_uri, function(err) {
   console.log(`Successfully connected to ${mongo_uri}`);
 });
 
-app.get("/api/home", function(req, res) {
-  res.send("Welcome!");
-});
-
 app.get("/api/secret", withAuth, function(req, res) {
   res.send("The password is potato");
 });
