@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
 
 const saltRounds = 10;
 
+// DON'T USE ARROW FUNCTION ON THIS FILE
 UserSchema.pre("save", function(next) {
   if (this.isNew || this.isModified("password")) {
     const document = this;
