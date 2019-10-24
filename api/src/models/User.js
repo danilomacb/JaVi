@@ -13,14 +13,16 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-const saltRounds = 10;
-
 // DON'T USE ARROW FUNCTION ON THIS FILE
 UserSchema.pre("save", function(next) {
   if (this.isNew || this.isModified("password")) {
     const document = this;
-    bcrypt.hash(document.password, saltRounds, function(err, hashedPassword) {
+    bcrypt.hash(document.password, parseInt(process.env.SALT_ROUNDS), function(
+      err,
+      hashedPassword
+    ) {
       if (err) {
+        console.error(err);
         next(err);
       } else {
         document.password = hashedPassword;
@@ -35,6 +37,7 @@ UserSchema.pre("save", function(next) {
 UserSchema.methods.isCorrectPassword = function(password, callback) {
   bcrypt.compare(password, this.password, function(err, same) {
     if (err) {
+      console.error(err);
       callback(err);
     } else {
       callback(err, same);

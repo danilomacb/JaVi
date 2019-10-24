@@ -1,3 +1,5 @@
+require("dotenv").config({ path: __dirname + "/../.env" });
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -13,11 +15,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/user", user);
 
-const mongo_uri = "mongodb://localhost:27017/javi";
-const port = 3001;
-
 mongoose.connect(
-  mongo_uri,
+  process.env.MONGO_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -34,6 +33,6 @@ app.get("/secret", withAuth, (req, res) => {
   res.send("The password is potato");
 });
 
-app.listen(port, () => {
-  console.log("listening on port " + port);
+app.listen(process.env.API_PORT, () => {
+  console.log("listening on port " + process.env.API_PORT);
 });

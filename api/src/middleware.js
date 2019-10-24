@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const secret = "mysecretsshhh";
 
 const withAuth = (req, res, next) => {
   const token =
@@ -7,7 +6,7 @@ const withAuth = (req, res, next) => {
   if (!token) {
     res.status(401).send("Unauthorized: No token provided");
   } else {
-    jwt.verify(token, secret, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         console.error(err);
         res.status(401).send("Unauthorized: Invalid token");

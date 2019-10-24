@@ -11,14 +11,13 @@ router.post("/register", (req, res) => {
   const user = new User({ email, password });
   user.save(err => {
     if (err) {
+      console.error(err);
       res.status(500).send("Error registering new user please try again.");
     } else {
       res.status(200).send("Welcome to the club!");
     }
   });
 });
-
-const secret = "mysecretsshhh";
 
 router.post("/authenticate", (req, res) => {
   const { email, password } = req.body;
@@ -35,6 +34,7 @@ router.post("/authenticate", (req, res) => {
     } else {
       user.isCorrectPassword(password, (err, same) => {
         if (err) {
+          console.error(err);
           res.status(500).json({
             error: "Internal error please try again"
           });
@@ -44,7 +44,7 @@ router.post("/authenticate", (req, res) => {
           });
         } else {
           const payload = { email };
-          const token = jwt.sign(payload, secret, {
+          const token = jwt.sign(payload, process.env.JWT_SECRET, {
             expiresIn: "1h"
           });
           res.cookie("token", token, { httpOnly: true }).sendStatus(200);
