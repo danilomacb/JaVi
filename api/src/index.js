@@ -65,7 +65,6 @@ app.post("/api/authenticate", function(req, res) {
             error: "Incorrect email or password"
           });
         } else {
-          // Issue token
           const payload = { email };
           const token = jwt.sign(payload, secret, {
             expiresIn: "1h"
