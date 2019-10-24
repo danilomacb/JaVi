@@ -1,63 +1,67 @@
-import React, { Component } from "react";
+import React from "react";
+import { Form, Button } from "react-bootstrap";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-  handleInputChange = event => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-  onSubmit = event => {
-    event.preventDefault();
-    fetch("/api/authenticate", {
-      method: "POST",
-      body: JSON.stringify(this.state),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => {
-        if (res.status === 200) {
-          this.props.history.push("/");
-        } else {
-          const error = new Error(res.error);
-          throw error;
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Error logging in please try again");
-      });
-  };
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Login Below!</h1>
-        <input
+function Login(props) {
+  let user = {};
+
+  return (
+    <Form
+      className="container"
+      onSubmit={event => {
+        event.preventDefault();
+
+        user.email = user.email.value;
+        user.password = user.password.value;
+        console.log(user);
+
+        fetch("/api/authenticate", {
+          method: "POST",
+          body: JSON.stringify(user),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+          .then(res => {
+            if (res.status === 200) {
+              props.history.push("/");
+            } else {
+              const error = new Error(res.error);
+              throw error;
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert("Erro ao fazer login, por favor tente novamente");
+          });
+      }}
+    >
+      <Form.Group controlId="formGroupEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
           type="email"
-          name="email"
           placeholder="Enter email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
+          ref={node => {
+            user.email = node;
+          }}
           required
         />
-        <input
+      </Form.Group>
+      <Form.Group controlId="formGroupPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
           type="password"
-          name="password"
-          placeholder="Enter password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
+          placeholder="Password"
+          ref={node => {
+            user.password = node;
+          }}
           required
         />
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+      </Form.Group>
+      <Button type="submit" className="w-100">
+        Entrar
+      </Button>
+    </Form>
+  );
 }
+
+export default Login;
