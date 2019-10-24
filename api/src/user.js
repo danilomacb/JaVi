@@ -6,10 +6,10 @@ const withAuth = require("./middleware");
 
 const router = express.Router();
 
-router.post("/register", function(req, res) {
+router.post("/register", (req, res) => {
   const { email, password } = req.body;
   const user = new User({ email, password });
-  user.save(function(err) {
+  user.save(err => {
     if (err) {
       res.status(500).send("Error registering new user please try again.");
     } else {
@@ -20,9 +20,9 @@ router.post("/register", function(req, res) {
 
 const secret = "mysecretsshhh";
 
-router.post("/authenticate", function(req, res) {
+router.post("/authenticate", (req, res) => {
   const { email, password } = req.body;
-  User.findOne({ email }, function(err, user) {
+  User.findOne({ email }, (err, user) => {
     if (err) {
       console.error(err);
       res.status(500).json({
@@ -33,7 +33,7 @@ router.post("/authenticate", function(req, res) {
         error: "Incorrect email or password"
       });
     } else {
-      user.isCorrectPassword(password, function(err, same) {
+      user.isCorrectPassword(password, (err, same) => {
         if (err) {
           res.status(500).json({
             error: "Internal error please try again"
@@ -54,7 +54,7 @@ router.post("/authenticate", function(req, res) {
   });
 });
 
-router.get("/checkToken", withAuth, function(req, res) {
+router.get("/checkToken", withAuth, (req, res) => {
   res.sendStatus(200);
 });
 
