@@ -1,12 +1,12 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 function Login({ history, match }) {
   let user = {};
 
   return (
     <Form
-      className="container"
+      className="my-userform"
       onSubmit={event => {
         event.preventDefault();
 
@@ -62,7 +62,7 @@ function Login({ history, match }) {
         <Form.Label>Email</Form.Label>
         <Form.Control
           type="email"
-          placeholder="Enter email"
+          placeholder="Email"
           ref={node => {
             user.email = node;
           }}
@@ -70,19 +70,19 @@ function Login({ history, match }) {
         />
       </Form.Group>
       <Form.Group controlId="formGroupPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Senha</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Password"
+          placeholder="Senha"
           ref={node => {
             user.password = node;
           }}
           required
         />
       </Form.Group>
-      <Button type="submit" className="w-100">
+      <button type="submit" className="my-button">
         Entrar
-      </Button>
+      </button>
     </Form>
   );
 }
