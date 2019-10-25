@@ -1,5 +1,7 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
+
+import UserFormTitle from "./UserFormTitle";
 
 function Login({ history, match }) {
   let user = {};
@@ -58,27 +60,36 @@ function Login({ history, match }) {
         }
       }}
     >
-      <Form.Group controlId="formGroupEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Email"
-          ref={node => {
-            user.email = node;
-          }}
-          required
-        />
+      <UserFormTitle match={match} />
+      <Form.Group as={Row} controlId="formGroupEmail">
+        <Form.Label column sm="2">
+          Email
+        </Form.Label>
+        <Col sm="10">
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            ref={node => {
+              user.email = node;
+            }}
+            required
+          />
+        </Col>
       </Form.Group>
-      <Form.Group controlId="formGroupPassword">
-        <Form.Label>Senha</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Senha"
-          ref={node => {
-            user.password = node;
-          }}
-          required
-        />
+      <Form.Group as={Row} controlId="formGroupPassword">
+        <Form.Label column sm="2">
+          Senha
+        </Form.Label>
+        <Col sm="10">
+          <Form.Control
+            type="password"
+            placeholder="Senha"
+            ref={node => {
+              user.password = node;
+            }}
+            required
+          />
+        </Col>
       </Form.Group>
       <button type="submit" className="my-button">
         Entrar
