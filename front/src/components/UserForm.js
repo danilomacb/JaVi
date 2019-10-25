@@ -6,7 +6,7 @@ function Login({ history, match }) {
 
   return (
     <Form
-      className="my-userform"
+      className="my-container my-userform"
       onSubmit={event => {
         event.preventDefault();
 
