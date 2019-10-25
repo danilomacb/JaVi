@@ -1,20 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
 
-function Message({ loginStatus, registerStatus }) {
-  if (loginStatus === true) {
-    return <h1>Seja Bem Vindo</h1>;
+class Message extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ""
+    };
   }
-  if (loginStatus === false) {
-    return <h1>Erro ao Fazer Login</h1>;
-  }
-  if (registerStatus === true) {
-    return <h1>Conta Criada Com Sucesso</h1>;
-  }
-  if (registerStatus === false) {
-    return <h1>Erro ao criar conta</h1>;
+  componentDidMount() {
+    let myMessage = document.getElementById("my-message");
+
+    if (this.props.loginStatus === true) {
+      this.setState({ message: "Seja Bem Vindo" });
+      myMessage.style.display = "block";
+    }
+    if (this.props.loginStatus === false) {
+      this.setState({ message: "Erro ao Fazer Login" });
+      myMessage.style.display = "block";
+    }
+    if (this.props.registerStatus === true) {
+      this.setState({ message: "Conta Criada Com Sucesso" });
+      myMessage.style.display = "block";
+    }
+    if (this.props.registerStatus === false) {
+      this.setState({ message: "Erro ao criar conta" });
+      myMessage.style.display = "block";
+    }
   }
 
-  return <></>;
+  render() {
+    return (
+      <div id="my-message">
+        <div className="my-message-text">{this.state.message}</div>
+        <div className="my-message-x">X</div>
+      </div>
+    );
+  }
 }
 
 export default Message;
