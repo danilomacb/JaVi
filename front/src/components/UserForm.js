@@ -1,9 +1,11 @@
 import React from "react";
 import { Form, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
 
 import UserFormTitle from "./UserFormTitle";
+import { loginStatus } from "../state/actions";
 
-function Login({ history, match }) {
+function UserForm({ history, match, dispatch }) {
   let user = {};
 
   return (
@@ -25,6 +27,7 @@ function Login({ history, match }) {
           })
             .then(res => {
               if (res.status === 200) {
+                dispatch(loginStatus(true));
                 history.push("/");
               } else {
                 const error = new Error(res.error);
@@ -33,7 +36,8 @@ function Login({ history, match }) {
             })
             .catch(err => {
               console.error(err);
-              alert("Erro ao fazer login, por favor tente novamente");
+              dispatch(loginStatus(false));
+              history.push("/");
             });
         }
 
@@ -98,4 +102,4 @@ function Login({ history, match }) {
   );
 }
 
-export default Login;
+export default connect()(UserForm);
