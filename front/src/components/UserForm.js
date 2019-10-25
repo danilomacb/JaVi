@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import UserFormTitle from "./UserFormTitle";
-import { loginStatus } from "../state/actions";
+import { setLoginStatus, setRegisterStatus } from "../state/actions";
 
 function UserForm({ history, match, dispatch }) {
   let user = {};
@@ -27,10 +27,10 @@ function UserForm({ history, match, dispatch }) {
           })
             .then(res => {
               if (res.status === 200) {
-                dispatch(loginStatus(true));
+                dispatch(setLoginStatus(true));
                 history.push("/");
               } else {
-                dispatch(loginStatus(false));
+                dispatch(setLoginStatus(false));
                 history.push("/");
               }
             })
@@ -49,15 +49,15 @@ function UserForm({ history, match, dispatch }) {
           })
             .then(res => {
               if (res.status === 200) {
+                dispatch(setRegisterStatus(true));
                 history.push("/");
               } else {
-                const error = new Error(res.error);
-                throw error;
+                dispatch(setRegisterStatus(false));
+                history.push("/");
               }
             })
             .catch(err => {
               console.error(err);
-              alert("Erro ao criar a conta, por favor tente novamente");
             });
         }
       }}
