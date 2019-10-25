@@ -30,14 +30,12 @@ function UserForm({ history, match, dispatch }) {
                 dispatch(loginStatus(true));
                 history.push("/");
               } else {
-                const error = new Error(res.error);
-                throw error;
+                dispatch(loginStatus(false));
+                history.push("/");
               }
             })
             .catch(err => {
               console.error(err);
-              dispatch(loginStatus(false));
-              history.push("/");
             });
         }
 
