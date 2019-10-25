@@ -6,7 +6,7 @@ function Navigation() {
   return (
     <Navbar collapseOnSelect expand="md" className="my-nav" variant="dark">
       <Link to="/" className="navbar-brand">
-        Será que eu já vi essa merda?
+        JaVi?!
       </Link>
       <Navbar.Toggle aria-controls="navigation" />
       <Navbar.Collapse id="navigation">
