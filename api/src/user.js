@@ -12,9 +12,9 @@ router.post("/register", (req, res) => {
   user.save(err => {
     if (err) {
       console.error(err);
-      res.status(500).send("Error registering new user please try again.");
+      res.status(500).json("Erro ao cadastrar, por favor tente novamente");
     } else {
-      res.status(200).send("Welcome to the club!");
+      res.status(200).json("Cadastro realizado com sucesso");
     }
   });
 });
@@ -42,7 +42,7 @@ router.post("/authenticate", (req, res) => {
           res
             .cookie("token", token, { httpOnly: true })
             .status(200)
-            .json("Seja Bem Vindo!");
+            .json("Seja bem vindo!");
         }
       });
     }
