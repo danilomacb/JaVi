@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { resetMessage } from "../state/actions";
+
 class Message extends Component {
   constructor(props) {
     super(props);
@@ -9,11 +11,10 @@ class Message extends Component {
     };
   }
   componentDidUpdate() {
-    let myMessage = document.getElementById("my-message");
-
-    if (this.props.responseMessage) {
-      myMessage.style.display = "block";
-    }
+    document.getElementById("my-message").style.display = "block";
+  }
+  componentWillUnmount() {
+    this.props.dispatch(resetMessage());
   }
 
   render() {

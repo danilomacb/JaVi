@@ -30,7 +30,7 @@ function UserForm({ history, match, dispatch }) {
                 res.json().then(data => dispatch(setMessage(data)));
                 history.push("/");
               } else {
-                // dispatch(setLoginStatus(false));
+                res.json().then(data => dispatch(setMessage(data)));
                 history.push("/");
               }
             })
@@ -49,10 +49,10 @@ function UserForm({ history, match, dispatch }) {
           })
             .then(res => {
               if (res.status === 200) {
-                // dispatch(setRegisterStatus(true));
+                res.json().then(data => dispatch(setMessage(data)));
                 history.push("/");
               } else {
-                // dispatch(setRegisterStatus(false));
+                res.json().then(data => dispatch(setMessage(data)));
                 history.push("/");
               }
             })
