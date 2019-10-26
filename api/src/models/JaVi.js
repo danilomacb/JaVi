@@ -14,7 +14,7 @@ const JaViSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  episodes: {
+  episode: {
     type: Number,
     required: false
   },

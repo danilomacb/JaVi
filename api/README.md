@@ -4,4 +4,4 @@ curl -X POST -H 'Content-Type: application/json' -d '{"email": "a@a", "password"
 
 # Inserir javi com cURL
 
-curl -X POST -H 'Content-Type: application/json' -d '{"name": "One Piece", "type": "anime", "genre": "shounen", "episodes": 800, "userEmail": "a@a"}' http://localhost:3001/javi/new/
+curl -X POST -H 'Content-Type: application/json' -d '{"name": "One Piece", "type": "anime", "genre": "shounen", "episode": 800, "userEmail": "a@a"}' http://localhost:3001/javi/new/

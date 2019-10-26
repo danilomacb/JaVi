@@ -6,8 +6,8 @@ const withAuth = require("./with-auth");
 const router = express.Router();
 
 router.post("/new", (req, res) => {
-  const { name, type, genre, episodes, userEmail } = req.body;
-  const javi = new JaVi({ name, type, genre, episodes, userEmail });
+  const { name, type, genre, episode, userEmail } = req.body;
+  const javi = new JaVi({ name, type, genre, episode, userEmail });
   javi.save(err => {
     if (err) {
       console.error(err);
