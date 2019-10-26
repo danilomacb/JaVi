@@ -17,9 +17,13 @@ class Message extends Component {
     this.props.dispatch(resetMessage());
   }
 
+  hide() {
+    document.getElementById("my-message").style.display = "none";
+  }
+
   render() {
     return (
-      <div id="my-message">
+      <div id="my-message" onClick={this.hide}>
         <div className="my-message-text">{this.props.responseMessage}</div>
         <div className="my-message-x">X</div>
       </div>
