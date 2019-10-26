@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Message from "../components/Message";
 
 const mapStateToProps = state => {
-  return { loginStatus: state.loginStatus, registerStatus: state.registerStatus };
+  return { responseMessage: state.responseMessage };
 };
 
 const MessageContainer = connect(mapStateToProps)(Message);

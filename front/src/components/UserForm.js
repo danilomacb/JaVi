@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import UserFormTitle from "./UserFormTitle";
-import { setLoginStatus, setRegisterStatus } from "../state/actions";
+import { setMessage } from "../state/actions";
 
 function UserForm({ history, match, dispatch }) {
   let user = {};
@@ -27,10 +27,10 @@ function UserForm({ history, match, dispatch }) {
           })
             .then(res => {
               if (res.status === 200) {
-                dispatch(setLoginStatus(true));
+                res.json().then(data => dispatch(setMessage(data)));
                 history.push("/");
               } else {
-                dispatch(setLoginStatus(false));
+                // dispatch(setLoginStatus(false));
                 history.push("/");
               }
             })
@@ -49,10 +49,10 @@ function UserForm({ history, match, dispatch }) {
           })
             .then(res => {
               if (res.status === 200) {
-                dispatch(setRegisterStatus(true));
+                // dispatch(setRegisterStatus(true));
                 history.push("/");
               } else {
-                dispatch(setRegisterStatus(false));
+                // dispatch(setRegisterStatus(false));
                 history.push("/");
               }
             })
