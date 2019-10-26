@@ -16,13 +16,13 @@ class JaViForm extends Component {
           javi.genre = javi.genre.value;
           javi.episode = javi.episode.value;
 
-          // fetch("/javi/new", {
-          //   method: "POST",
-          //   body: JSON.stringify(javi),
-          //   headers: {
-          //     "Content-Type": "application/json"
-          //   }
-          // });
+          fetch("/javi/new", {
+            method: "POST",
+            body: JSON.stringify(javi),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
         }}
       >
         <h1 className="mb-4">Novo JaVi</h1>
