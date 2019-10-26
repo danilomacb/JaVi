@@ -17,6 +17,9 @@ function Navigation() {
           <Link to="/segredo" className="nav-link">
             Segredo
           </Link>
+          <Link to="/novo-javi" className="nav-link">
+            Novo JaVi
+          </Link>
         </Nav>
         <Nav>
           <Link to="/cadastrar" className="nav-link">

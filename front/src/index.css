@@ -7,6 +7,18 @@ body {
   background-color: rgb(20, 20, 20) !important;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0 30px rgb(20, 20, 20) inset !important;
+  -webkit-text-fill-color: rgb(50, 200, 150) !important;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 input {
   background-color: rgb(20, 20, 20) !important;
   border: 1px solid rgb(50, 200, 150) !important;
@@ -14,12 +26,6 @@ input {
 }
 input::placeholder {
   color: rgba(50, 200, 150, 0.3) !important;
-}
-/* Change the white to any color ;) */
-input:-webkit-autofill,
-input:-webkit-autofill:hover {
-  -webkit-box-shadow: 0 0 0 30px rgb(20, 20, 20) inset !important;
-  -webkit-text-fill-color: rgb(50, 200, 150) !important;
 }
 
 .my-nav {
