@@ -6,7 +6,7 @@ const getEmail = require("./get-email");
 
 const router = express.Router();
 
-router.post("/new", (req, res) => {
+router.post("/add", (req, res) => {
   const { name, type, genre, episode } = req.body;
   const userEmail = getEmail(req, res);
   const watched = new Watched({ name, type, genre, episode, userEmail });

@@ -2,7 +2,7 @@ import { all, call, takeEvery } from "redux-saga/effects";
 import { ADD_WATCHED } from "../state/actions";
 
 function* addWatched(action) {
-  const endpoint = "/watched/new";
+  const endpoint = "/watched/add";
   yield call(fetch, endpoint, {
     method: "POST",
     headers: {
