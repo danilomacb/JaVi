@@ -6,7 +6,7 @@ const withAuth = require("./with-auth");
 
 const router = express.Router();
 
-router.post("/register", (req, res) => {
+router.post("/add", (req, res) => {
   const { email, password } = req.body;
   const user = new User({ email, password });
   user.save(err => {

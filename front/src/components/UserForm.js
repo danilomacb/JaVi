@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import UserFormTitle from "./UserFormTitle";
-import { setMessage } from "../state/actions";
+import { setMessage, addUser } from "../state/actions";
 
 function UserForm({ history, match, dispatch }) {
   let user = {};
@@ -40,25 +40,7 @@ function UserForm({ history, match, dispatch }) {
         }
 
         if (match.path === "/cadastrar") {
-          fetch("/user/register", {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(res => {
-              if (res.status === 200) {
-                res.json().then(data => dispatch(setMessage(data)));
-                history.push("/");
-              } else {
-                res.json().then(data => dispatch(setMessage(data)));
-                history.push("/");
-              }
-            })
-            .catch(err => {
-              console.error(err);
-            });
+          dispatch(addUser(user));
         }
       }}
     >
