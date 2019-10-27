@@ -41,6 +41,7 @@ function UserForm({ history, match, dispatch }) {
 
         if (match.path === "/cadastrar") {
           dispatch(addUser(user));
+          history.push("/");
         }
       }}
     >

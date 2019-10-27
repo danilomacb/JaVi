@@ -1,16 +1,18 @@
-import { all, call, takeEvery } from "redux-saga/effects";
-import { ADD_USER } from "../state/actions";
+import { all, call, takeEvery, put } from "redux-saga/effects";
+import { ADD_USER, SET_MESSAGE } from "../state/actions";
 
 function* addUser(action) {
-  debugger;
   const endpoint = "/user/add";
-  yield call(fetch, endpoint, {
+  const response = yield call(fetch, endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(action.user)
   });
+
+  const responseMessage = yield response.json();
+  yield put({ type: SET_MESSAGE, responseMessage });
 }
 
 function* getAction() {
