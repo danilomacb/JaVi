@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+
+import { addWatched } from "../state/actions";
 
 class WatchedForm extends Component {
   render() {
@@ -16,13 +19,7 @@ class WatchedForm extends Component {
           watched.genre = watched.genre.value;
           watched.episode = watched.episode.value;
 
-          fetch("/watched/new", {
-            method: "POST",
-            body: JSON.stringify(watched),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          });
+          this.props.dispatch(addWatched(watched));
         }}
       >
         <h1 className="mb-4">Adicionar Assistido</h1>
@@ -86,4 +83,4 @@ class WatchedForm extends Component {
   }
 }
 
-export default WatchedForm;
+export default connect()(WatchedForm);
