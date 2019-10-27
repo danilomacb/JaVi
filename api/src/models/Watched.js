@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const JaViSchema = new mongoose.Schema({
+const WatchedSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -24,4 +24,4 @@ const JaViSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("JaVi", JaViSchema);
+module.exports = mongoose.model("Watched", WatchedSchema);
