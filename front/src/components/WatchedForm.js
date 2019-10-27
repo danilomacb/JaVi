@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 
-class JaViForm extends Component {
+class WatchedForm extends Component {
   render() {
-    let javi = {};
+    let watched = {};
 
     return (
       <Form
@@ -11,21 +11,21 @@ class JaViForm extends Component {
         onSubmit={event => {
           event.preventDefault();
 
-          javi.name = javi.name.value;
-          javi.type = javi.type.value;
-          javi.genre = javi.genre.value;
-          javi.episode = javi.episode.value;
+          watched.name = watched.name.value;
+          watched.type = watched.type.value;
+          watched.genre = watched.genre.value;
+          watched.episode = watched.episode.value;
 
-          fetch("/javi/new", {
+          fetch("/watched/new", {
             method: "POST",
-            body: JSON.stringify(javi),
+            body: JSON.stringify(watched),
             headers: {
               "Content-Type": "application/json"
             }
           });
         }}
       >
-        <h1 className="mb-4">Novo JaVi</h1>
+        <h1 className="mb-4">Adicionar Assistido</h1>
         <Form.Group as={Row}>
           <Form.Label column sm="2">
             Nome
@@ -34,7 +34,7 @@ class JaViForm extends Component {
             <Form.Control
               type="text"
               ref={node => {
-                javi.name = node;
+                watched.name = node;
               }}
             />
           </Col>
@@ -47,7 +47,7 @@ class JaViForm extends Component {
             <Form.Control
               type="text"
               ref={node => {
-                javi.type = node;
+                watched.type = node;
               }}
             />
           </Col>
@@ -60,7 +60,7 @@ class JaViForm extends Component {
             <Form.Control
               type="text"
               ref={node => {
-                javi.genre = node;
+                watched.genre = node;
               }}
             />
           </Col>
@@ -73,7 +73,7 @@ class JaViForm extends Component {
             <Form.Control
               type="number"
               ref={node => {
-                javi.episode = node;
+                watched.episode = node;
               }}
             />
           </Col>
@@ -86,4 +86,4 @@ class JaViForm extends Component {
   }
 }
 
-export default JaViForm;
+export default WatchedForm;
