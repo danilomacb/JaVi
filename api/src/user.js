@@ -19,7 +19,7 @@ router.post("/add", (req, res) => {
   });
 });
 
-router.post("/authenticate", (req, res) => {
+router.post("/login", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email }, (err, user) => {
     if (err) {

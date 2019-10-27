@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import UserFormTitle from "./UserFormTitle";
-import { setMessage, addUser } from "../state/actions";
+import { addUser, login } from "../state/actions";
 
 function UserForm({ history, match, dispatch }) {
   let user = {};
@@ -18,25 +18,8 @@ function UserForm({ history, match, dispatch }) {
         user.password = user.password.value;
 
         if (match.path === "/entrar") {
-          fetch("/user/authenticate", {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(res => {
-              if (res.status === 200) {
-                res.json().then(data => dispatch(setMessage(data)));
-                history.push("/");
-              } else {
-                res.json().then(data => dispatch(setMessage(data)));
-                history.push("/");
-              }
-            })
-            .catch(err => {
-              console.error(err);
-            });
+          dispatch(login(user));
+          history.push("/");
         }
 
         if (match.path === "/cadastrar") {

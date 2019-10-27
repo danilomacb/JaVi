@@ -12,6 +12,7 @@ import App from "./App";
 import reducers from "./state/reducers";
 import runAddWatched from "./sagas/addWatched";
 import runAddUser from "./sagas/addUser";
+import runLogin from "./sagas/login";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,6 +20,7 @@ const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(runAddWatched);
 sagaMiddleware.run(runAddUser);
+sagaMiddleware.run(runLogin);
 
 ReactDOM.render(
   <Provider store={store}>
