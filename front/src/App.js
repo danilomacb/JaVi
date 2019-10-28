@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Home from "./components/Home";
-import Secret from "./components/Secret";
 import UserForm from "./components/UserForm";
 import WithAuth from "./components/WithAuth";
 import Navigation from "./components/Navigation";
