@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-function Watched() {
+import { getWatcheds } from "../state/actions";
+
+function Watcheds({ dispatch }) {
+  dispatch(getWatcheds());
+
   return (
     <>
       <Link to="/add-assistido">Adicionar Novo</Link>
@@ -10,4 +15,4 @@ function Watched() {
   );
 }
 
-export default Watched;
+export default connect()(Watcheds);

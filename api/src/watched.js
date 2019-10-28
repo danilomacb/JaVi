@@ -20,4 +20,10 @@ router.post("/add", (req, res) => {
   });
 });
 
+router.get("/get-all", async (req, res) => {
+  const userEmail = getEmail(req, res);
+  const watcheds = await Watched.find({ userEmail });
+  res.status(200).json(watcheds);
+});
+
 module.exports = router;

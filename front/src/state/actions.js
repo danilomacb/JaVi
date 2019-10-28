@@ -3,6 +3,7 @@ export const RESET_MESSAGE = "RESET_MESSAGE";
 export const ADD_WATCHED = "ADD_WATCHED";
 export const ADD_USER = "ADD_USER";
 export const LOGIN = "LOGIN";
+export const GET_WATCHEDS = "GET_WATCHEDS";
 
 export function setMessage(responseMessage) {
   return { type: SET_MESSAGE, responseMessage };
@@ -22,4 +23,8 @@ export function addUser(user) {
 
 export function login(user) {
   return { type: LOGIN, user };
+}
+
+export function getWatcheds() {
+  return { type: GET_WATCHEDS };
 }
