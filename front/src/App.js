@@ -16,10 +16,9 @@ export default class App extends Component {
         <Navigation />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/segredo" component={WithAuth(Secret)} />
           <Route path="/entrar" component={props => <UserForm {...props} title="Entrar" />} />
           <Route path="/cadastrar" component={props => <UserForm {...props} title="Cadastrar" />} />
-          <Route path="/assistidos" component={WatchedsContainer} />
+          <Route path="/assistidos" component={WithAuth(WatchedsContainer)} />
           <Route path="/add-assistido" component={WatchedForm} />
           {/* <Route path="/add-para-assistir" component={} />
           <Route path="/para-assistir" component={} /> */}
