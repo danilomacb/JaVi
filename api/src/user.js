@@ -40,7 +40,7 @@ router.post("/login", (req, res) => {
             expiresIn: "1h"
           });
           res
-            .cookie("token", token, { httpOnly: true })
+            .cookie("token", token, { httpOnly: false })
             .status(200)
             .json("Seja bem vindo!");
         }

@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
-function Navigation() {
+function Navigation({ token }) {
+  console.log(token);
   return (
     <Navbar collapseOnSelect expand="md" className="my-nav" variant="dark">
       <Link to="/" className="navbar-brand">

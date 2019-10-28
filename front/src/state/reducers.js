@@ -1,4 +1,4 @@
-import { SET_MESSAGE, RESET_MESSAGE, SET_WATCHEDS } from "./actions";
+import { SET_MESSAGE, RESET_MESSAGE, SET_WATCHEDS, SET_TOKEN } from "./actions";
 
 export default function reducer(state = {}, action) {
   switch (action.type) {
@@ -8,6 +8,8 @@ export default function reducer(state = {}, action) {
       return { ...state, responseMessage: undefined };
     case SET_WATCHEDS:
       return { ...state, watcheds: action.watcheds };
+    case SET_TOKEN:
+      return { ...state, token: action.token };
     default:
       return state;
   }

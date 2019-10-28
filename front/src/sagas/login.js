@@ -1,5 +1,5 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
-import { LOGIN, SET_MESSAGE } from "../state/actions";
+import { LOGIN, SET_MESSAGE, SET_TOKEN } from "../state/actions";
 
 function* login(action) {
   const endpoint = "/user/login";
@@ -13,6 +13,10 @@ function* login(action) {
 
   const responseMessage = yield response.json();
   yield put({ type: SET_MESSAGE, responseMessage });
+
+  if (response.status === 200) {
+    yield put({ type: SET_TOKEN, token: document.cookie.replace("token=", "") });
+  }
 }
 
 function* getAction() {

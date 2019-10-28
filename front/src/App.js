@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import UserForm from "./components/UserForm";
 import WithAuth from "./components/WithAuth";
-import Navigation from "./components/Navigation";
+import NavigationContainer from "./containers/NavigationContainer";
 import WatchedsContainer from "./containers/WatchedsContainer";
 import WatchedForm from "./components/WatchedForm";
 
@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Navigation />
+        <NavigationContainer />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/entrar" component={props => <UserForm {...props} title="Entrar" />} />
