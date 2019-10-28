@@ -1,11 +1,11 @@
-import { all, call, takeEvery } from "redux-saga/effects";
-import { GET_WATCHEDS } from "../state/actions";
+import { all, call, takeEvery, put } from "redux-saga/effects";
+import { GET_WATCHEDS, SET_WATCHEDS } from "../state/actions";
 
 function* getWatcheds() {
   const endpoint = "/watched/get-all";
   const response = yield call(fetch, endpoint);
   const watcheds = yield response.json();
-  console.log(watcheds);
+  yield put({ type: SET_WATCHEDS, watcheds });
 }
 
 function* getAction() {

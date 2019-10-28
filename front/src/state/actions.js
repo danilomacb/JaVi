@@ -4,6 +4,7 @@ export const ADD_WATCHED = "ADD_WATCHED";
 export const ADD_USER = "ADD_USER";
 export const LOGIN = "LOGIN";
 export const GET_WATCHEDS = "GET_WATCHEDS";
+export const SET_WATCHEDS = "SET_WATCHEDS";
 
 export function setMessage(responseMessage) {
   return { type: SET_MESSAGE, responseMessage };
