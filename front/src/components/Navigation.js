@@ -14,9 +14,6 @@ function Navigation() {
           <Link to="/" className="nav-link">
             Início
           </Link>
-          <Link to="/segredo" className="nav-link">
-            Segredo
-          </Link>
           <Link to="/assistidos" className="nav-link">
             Assistidos
           </Link>
