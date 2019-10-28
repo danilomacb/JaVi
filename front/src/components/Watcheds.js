@@ -12,20 +12,27 @@ class Watcheds extends Component {
   render() {
     if (!this.props.watcheds || this.props.watcheds.length === 0) {
       return (
-        <>
+        <div className="my-container">
           <Link to="/add-assistido">Adicionar Novo</Link>
           <h1>Sua lista esta vazia</h1>
-        </>
+        </div>
       );
     }
 
     return (
-      <>
-        <Link to="/add-assistido">Adicionar Novo</Link>
+      <div className="my-container">
+        <Link to="/add-assistido">
+          <div className="my-button mb-4 text-center">Adicionar Novo</div>
+        </Link>
         {this.props.watcheds.map((element, _id) => (
-          <h1 key={_id}>{element.name}</h1>
+          <Link to="#" key={_id}>
+            <div className="my-item">
+              <div className="my-item-name">Nome: {element.name}</div>
+              <div className="my-item-episode">Episódio: {element.episode}</div>
+            </div>
+          </Link>
         ))}
-      </>
+      </div>
     );
   }
 }

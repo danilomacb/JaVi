@@ -7,6 +7,10 @@ body {
   background-color: rgb(20, 20, 20) !important;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover {
   -webkit-box-shadow: 0 0 0 30px rgb(20, 20, 20) inset !important;
@@ -72,4 +76,19 @@ input::placeholder {
   display: inline-block;
   border-left: 1px solid rgb(50, 200, 150);
   padding: 5px;
+}
+
+.my-item {
+  display: flex;
+  border: 1px solid rgb(50, 200, 150);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.my-item-name,
+.my-item-episode {
+  flex: 1;
+  padding: 5px 5px 5px 20px;
+}
+.my-item-episode {
+  border-left: 1px solid rgb(50, 200, 150);
 }
