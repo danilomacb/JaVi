@@ -31,10 +31,6 @@ mongoose.connect(
   }
 );
 
-app.get("/secret", withAuth, (req, res) => {
-  res.send("The password is potato");
-});
-
 app.listen(process.env.API_PORT, () => {
   console.log("listening on port " + process.env.API_PORT);
 });
