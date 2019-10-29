@@ -15,7 +15,7 @@ const WatchedSchema = new mongoose.Schema({
     required: true
   },
   episode: {
-    type: Number,
+    type: String,
     required: false
   },
   userEmail: {

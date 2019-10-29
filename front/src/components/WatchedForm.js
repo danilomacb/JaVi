@@ -68,7 +68,7 @@ class WatchedForm extends Component {
           </Form.Label>
           <Col sm="10">
             <Form.Control
-              type="number"
+              type="text"
               ref={node => {
                 watched.episode = node;
               }}
