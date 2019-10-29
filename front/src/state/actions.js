@@ -6,6 +6,7 @@ export const LOGIN = "LOGIN";
 export const GET_WATCHEDS = "GET_WATCHEDS";
 export const SET_WATCHEDS = "SET_WATCHEDS";
 export const SET_TOKEN = "SET_TOKEN";
+export const CHECK_TOKEN = "CHECK_TOKEN";
 
 export function setMessage(responseMessage) {
   return { type: SET_MESSAGE, responseMessage };
@@ -29,4 +30,8 @@ export function login(user) {
 
 export function getWatcheds() {
   return { type: GET_WATCHEDS };
+}
+
+export function checkToken() {
+  return { type: CHECK_TOKEN };
 }

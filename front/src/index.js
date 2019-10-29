@@ -14,6 +14,7 @@ import runAddWatched from "./sagas/addWatched";
 import runAddUser from "./sagas/addUser";
 import runLogin from "./sagas/login";
 import runGetWatcheds from "./sagas/getWatcheds";
+import runCheckToken from "./sagas/checkToken";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -23,6 +24,7 @@ sagaMiddleware.run(runAddWatched);
 sagaMiddleware.run(runAddUser);
 sagaMiddleware.run(runLogin);
 sagaMiddleware.run(runGetWatcheds);
+sagaMiddleware.run(runCheckToken);
 
 ReactDOM.render(
   <Provider store={store}>
