@@ -4,6 +4,7 @@ import { Navbar, Nav } from "react-bootstrap";
 
 import { checkToken } from "../state/actions";
 import NavigationLinks from "./NavigationLinks";
+import NavigationAuth from "./NavigationAuth";
 
 class Navigation extends Component {
   componentDidMount() {
@@ -25,12 +26,7 @@ class Navigation extends Component {
             <NavigationLinks token={this.props.token} />
           </Nav>
           <Nav>
-            <Link to="/cadastrar" className="nav-link">
-              Cadastrar
-            </Link>
-            <Link to="/entrar" className="nav-link">
-              Entrar
-            </Link>
+            <NavigationAuth token={this.props.token} />
           </Nav>
         </Navbar.Collapse>
       </Navbar>
