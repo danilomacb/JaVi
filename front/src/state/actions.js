@@ -36,3 +36,7 @@ export function getWatcheds() {
 export function checkToken() {
   return { type: CHECK_TOKEN };
 }
+
+export function resetToken() {
+  return { type: RESET_TOKEN };
+}

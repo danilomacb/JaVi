@@ -26,7 +26,7 @@ class Navigation extends Component {
             <NavigationLinks token={this.props.token} />
           </Nav>
           <Nav>
-            <NavigationAuth token={this.props.token} />
+            <NavigationAuth token={this.props.token} dispatch={this.props.dispatch} />
           </Nav>
         </Navbar.Collapse>
       </Navbar>
