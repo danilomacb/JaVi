@@ -1,4 +1,5 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
+
 import { CHECK_TOKEN, SET_TOKEN, RESET_TOKEN } from "../state/actions";
 
 function* checkToken() {

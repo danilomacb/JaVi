@@ -1,24 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
+import { createBrowserHistory } from "history";
+import { routerMiddleware, ConnectedRouter } from "connected-react-router";
 
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
-import reducers from "./state/reducers";
+import createRootReducer from "./state/reducers";
 import runAddWatched from "./sagas/addWatched";
 import runAddUser from "./sagas/addUser";
 import runLogin from "./sagas/login";
 import runGetWatcheds from "./sagas/getWatcheds";
 import runCheckToken from "./sagas/checkToken";
 
+const history = createBrowserHistory();
+
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+const store = createStore(
+  createRootReducer(history),
+  applyMiddleware(routerMiddleware(history), sagaMiddleware)
+);
 
 sagaMiddleware.run(runAddWatched);
 sagaMiddleware.run(runAddUser);
@@ -28,9 +34,9 @@ sagaMiddleware.run(runCheckToken);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );

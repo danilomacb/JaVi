@@ -1,6 +1,9 @@
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
+
 import { SET_MESSAGE, RESET_MESSAGE, SET_WATCHEDS, SET_TOKEN, RESET_TOKEN } from "./actions";
 
-export default function reducer(state = {}, action) {
+function reducer(state = {}, action) {
   switch (action.type) {
     case SET_MESSAGE:
       return { ...state, responseMessage: action.responseMessage };
@@ -16,3 +19,11 @@ export default function reducer(state = {}, action) {
       return state;
   }
 }
+
+const createRootReducer = history =>
+  combineReducers({
+    router: connectRouter(history),
+    reducer
+  });
+
+export default createRootReducer;
