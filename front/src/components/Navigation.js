@@ -11,7 +11,6 @@ class Navigation extends Component {
   }
 
   render() {
-    console.log(this.props.token);
     return (
       <Navbar collapseOnSelect expand="md" className="my-nav" variant="dark">
         <Link to="/" className="navbar-brand">
