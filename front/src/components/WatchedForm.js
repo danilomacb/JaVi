@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { addWatched } from "../state/actions";
+import { addWatched, getWatched } from "../state/actions";
 
 class WatchedForm extends Component {
   render() {
     let watched = {};
+
+    if (this.props.match.path === "/assistido/:id") {
+      this.props.dispatch(getWatched(this.props.match.params.id));
+    }
 
     return (
       <Form

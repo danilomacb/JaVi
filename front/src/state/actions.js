@@ -3,6 +3,7 @@ export const RESET_MESSAGE = "RESET_MESSAGE";
 export const ADD_USER = "ADD_USER";
 export const LOGIN = "LOGIN";
 export const GET_WATCHEDS = "GET_WATCHEDS";
+export const GET_WATCHED = "GET_WATCHED";
 export const SET_WATCHEDS = "SET_WATCHEDS";
 export const ADD_WATCHED = "ADD_WATCHED";
 export const DELETE_WATCHED = "DELETE_WATCHED";
@@ -44,4 +45,8 @@ export function resetToken() {
 
 export function deleteWatched(id) {
   return { type: DELETE_WATCHED, id };
+}
+
+export function getWatched(id) {
+  return { type: GET_WATCHED, id };
 }
