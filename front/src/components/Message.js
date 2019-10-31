@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { resetMessage } from "../state/actions";
 
@@ -31,4 +32,8 @@ class Message extends Component {
   }
 }
 
-export default Message;
+function mapStateToProps(state) {
+  return { responseMessage: state.reducer.responseMessage };
+}
+
+export default connect(mapStateToProps)(Message);

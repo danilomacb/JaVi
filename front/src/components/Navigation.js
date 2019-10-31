@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import { connect } from "react-redux";
 
 import { checkToken, resetToken } from "../state/actions";
 
@@ -60,4 +61,8 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+function mapStateToProps(state) {
+  return { token: state.reducer.token };
+}
+
+export default connect(mapStateToProps)(Navigation);

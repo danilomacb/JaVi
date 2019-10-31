@@ -49,4 +49,8 @@ class Watcheds extends Component {
   }
 }
 
-export default connect()(Watcheds);
+function mapStateToProps(state) {
+  return { watcheds: state.reducer.watcheds };
+}
+
+export default connect(mapStateToProps)(Watcheds);

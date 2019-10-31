@@ -1,11 +1,11 @@
 import React from "react";
 
-import MessageContainer from "../containers/MessageContainer";
+import Message from "../components/Message";
 
 function Home() {
   return (
     <>
-      <MessageContainer />
+      <Message />
       <div className="my-container">
         <h1 className="text-center">Afinal, pra que serve isso?</h1>
         <p>
