@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
 import { getWatcheds } from "../state/actions";
 
@@ -36,9 +36,14 @@ class Watcheds extends Component {
                     Gênero: {element.genre} <br />
                     {element.episode ? "Episódio: " + element.episode : null}
                   </Card.Text>
-                  <Link to="#">
-                    <button className="my-button">Editar</button>
-                  </Link>
+                  <ButtonGroup className="w-100">
+                    <Link class="btn my-button" to="#">
+                      Editar
+                    </Link>
+                    <Link class="btn my-button" to="#">
+                      Deletar
+                    </Link>
+                  </ButtonGroup>
                 </Card.Body>
               </Card>
             </Col>
