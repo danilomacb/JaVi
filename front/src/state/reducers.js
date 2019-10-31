@@ -1,7 +1,14 @@
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
-import { SET_MESSAGE, RESET_MESSAGE, SET_WATCHEDS, SET_TOKEN, RESET_TOKEN } from "./actions";
+import {
+  SET_MESSAGE,
+  RESET_MESSAGE,
+  SET_WATCHEDS,
+  SET_WATCHED,
+  SET_TOKEN,
+  RESET_TOKEN
+} from "./actions";
 
 function reducer(state = {}, action) {
   switch (action.type) {
@@ -11,6 +18,8 @@ function reducer(state = {}, action) {
       return { ...state, responseMessage: undefined };
     case SET_WATCHEDS:
       return { ...state, watcheds: action.watcheds };
+    case SET_WATCHED:
+      return { ...state, watched: action.watched };
     case SET_TOKEN:
       return { ...state, token: action.token };
     case RESET_TOKEN:

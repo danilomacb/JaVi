@@ -1,9 +1,11 @@
-import { all, call, takeEvery } from "redux-saga/effects";
-import { GET_WATCHED } from "../state/actions";
+import { all, call, takeEvery, put } from "redux-saga/effects";
+import { GET_WATCHED, SET_WATCHED } from "../state/actions";
 
 function* getWatched(action) {
   const endpoint = "/watched/get/" + action.id;
-  yield call(fetch, endpoint);
+  const response = yield call(fetch, endpoint);
+  const watched = yield response.json();
+  yield put({ type: SET_WATCHED, watched });
 }
 
 function* getAction() {

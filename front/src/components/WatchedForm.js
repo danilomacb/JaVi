@@ -5,11 +5,17 @@ import { connect } from "react-redux";
 import { addWatched, getWatched } from "../state/actions";
 
 class WatchedForm extends Component {
+  componentDidMount() {
+    if (this.props.match.path === "/assistido/:id") {
+      this.props.dispatch(getWatched(this.props.match.params.id));
+    }
+  }
+
   render() {
     let watched = {};
 
-    if (this.props.match.path === "/assistido/:id") {
-      this.props.dispatch(getWatched(this.props.match.params.id));
+    if (this.props.watched) {
+      watched = this.props.watched;
     }
 
     return (
@@ -26,7 +32,9 @@ class WatchedForm extends Component {
           this.props.dispatch(addWatched(watched));
         }}
       >
-        <h1 className="mb-4">Adicionar Assistido</h1>
+        <h1 className="mb-4">
+          {this.props.match.path === "/assistido/:id" ? "Atualizar" : "Adicionar"} Assistido
+        </h1>
         <Form.Group as={Row}>
           <Form.Label column sm="2">
             Nome
@@ -34,6 +42,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              defaultValue={watched.name}
               ref={node => {
                 watched.name = node;
               }}
@@ -47,6 +56,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              defaultValue={watched.type}
               ref={node => {
                 watched.type = node;
               }}
@@ -60,6 +70,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              defaultValue={watched.genre}
               ref={node => {
                 watched.genre = node;
               }}
@@ -73,6 +84,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              defaultValue={watched.episode}
               ref={node => {
                 watched.episode = node;
               }}
@@ -80,11 +92,15 @@ class WatchedForm extends Component {
           </Col>
         </Form.Group>
         <button type="submit" className="my-button">
-          Adicionar
+          {this.props.match.path === "/assistido/:id" ? "Atualizar" : "Adicionar"}
         </button>
       </Form>
     );
   }
 }
 
-export default connect()(WatchedForm);
+function mapStateToProps(state) {
+  return { watched: state.reducer.watched };
+}
+
+export default connect(mapStateToProps)(WatchedForm);
