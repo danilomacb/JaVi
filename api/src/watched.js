@@ -26,4 +26,10 @@ router.get("/get-all", async (req, res) => {
   res.status(200).json(watcheds);
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  await Watched.findByIdAndDelete(id);
+  res.status(200).send();
+});
+
 module.exports = router;

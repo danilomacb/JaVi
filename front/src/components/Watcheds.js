@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
-import { getWatcheds } from "../state/actions";
+import { getWatcheds, deleteWatched } from "../state/actions";
 
 class Watcheds extends Component {
   componentDidMount() {
@@ -40,9 +40,12 @@ class Watcheds extends Component {
                     <Link className="btn my-button" to="#">
                       Editar
                     </Link>
-                    <Link className="btn my-button" to="#">
+                    <button
+                      className="btn my-button"
+                      onClick={() => this.props.dispatch(deleteWatched(element._id))}
+                    >
                       Deletar
-                    </Link>
+                    </button>
                   </ButtonGroup>
                 </Card.Body>
               </Card>
