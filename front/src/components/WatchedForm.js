@@ -76,7 +76,7 @@ class WatchedForm extends Component {
           </Col>
         </Form.Group>
         <button type="submit" className="my-button">
-          Entrar
+          Adicionar
         </button>
       </Form>
     );

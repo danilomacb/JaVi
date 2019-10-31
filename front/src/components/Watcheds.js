@@ -27,8 +27,8 @@ class Watcheds extends Component {
         </Link>
         <Row>
           {this.props.watcheds.map((element, _id) => (
-            <Col xs={12} sm={6} lg={4} className="mb-4">
-              <Card key={_id} className="my-card">
+            <Col key={_id} xs={12} sm={6} lg={4} className="mb-4">
+              <Card className="my-card">
                 <Card.Header className="my-card-header">{element.name}</Card.Header>
                 <Card.Body>
                   <Card.Text>
@@ -37,10 +37,10 @@ class Watcheds extends Component {
                     {element.episode ? "Episódio: " + element.episode : null}
                   </Card.Text>
                   <ButtonGroup className="w-100">
-                    <Link class="btn my-button" to="#">
+                    <Link className="btn my-button" to="#">
                       Editar
                     </Link>
-                    <Link class="btn my-button" to="#">
+                    <Link className="btn my-button" to="#">
                       Deletar
                     </Link>
                   </ButtonGroup>
