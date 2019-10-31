@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <MessageContainer />
-      <div className="my-container my-home">
+      <div className="my-container">
         <h1 className="text-center">Afinal, pra que serve isso?</h1>
         <p>
           Você já se perguntou se já viu um filme, ou um episódio de série/anime? Com diferentes

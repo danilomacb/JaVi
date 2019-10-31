@@ -10,7 +10,7 @@ class WatchedForm extends Component {
 
     return (
       <Form
-        className="my-container my-userform"
+        className="my-container my-form"
         onSubmit={event => {
           event.preventDefault();
 
