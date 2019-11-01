@@ -27,7 +27,9 @@ class WatchedForm extends Component {
           watched.name = watched.name.value;
           watched.type = watched.type.value;
           watched.genre = watched.genre.value;
+          watched.season = watched.season.value;
           watched.episode = watched.episode.value;
+          watched.comment = watched.comment.value;
 
           if (this.props.match.path === "/add-assistido") {
             this.props.dispatch(addWatched(watched));
@@ -47,6 +49,7 @@ class WatchedForm extends Component {
           </Form.Label>
           <Col sm="10">
             <Form.Control
+              required
               type="text"
               defaultValue={watched.name}
               ref={node => {
@@ -85,6 +88,20 @@ class WatchedForm extends Component {
         </Form.Group>
         <Form.Group as={Row}>
           <Form.Label column sm="2">
+            Temporada
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control
+              type="text"
+              defaultValue={watched.season}
+              ref={node => {
+                watched.season = node;
+              }}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label column sm="2">
             Episódio
           </Form.Label>
           <Col sm="10">
@@ -93,6 +110,20 @@ class WatchedForm extends Component {
               defaultValue={watched.episode}
               ref={node => {
                 watched.episode = node;
+              }}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label column sm="2">
+            Comentário
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control
+              as="textarea"
+              defaultValue={watched.comment}
+              ref={node => {
+                watched.comment = node;
               }}
             />
           </Col>

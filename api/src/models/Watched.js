@@ -6,16 +6,19 @@ const WatchedSchema = new mongoose.Schema({
     required: true
   },
   type: {
-    type: String,
-    required: true
+    type: String
   },
   genre: {
-    type: String,
-    required: true
+    type: String
+  },
+  season: {
+    type: String
   },
   episode: {
-    type: String,
-    required: false
+    type: String
+  },
+  comment: {
+    type: String
   },
   userEmail: {
     type: String,

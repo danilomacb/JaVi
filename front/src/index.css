@@ -12,7 +12,9 @@ a:hover {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover {
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover {
   -webkit-box-shadow: 0 0 0 30px rgb(20, 20, 20) inset !important;
   -webkit-text-fill-color: rgb(50, 200, 150) !important;
 }
@@ -30,6 +32,11 @@ input {
 }
 input::placeholder {
   color: rgba(50, 200, 150, 0.3) !important;
+}
+textarea {
+  background-color: rgb(20, 20, 20) !important;
+  border: 1px solid rgb(50, 200, 150) !important;
+  font-size: 14px !important;
 }
 
 .my-nav {

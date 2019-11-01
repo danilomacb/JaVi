@@ -7,9 +7,9 @@ const getEmail = require("./get-email");
 const router = express.Router();
 
 router.post("/add", withAuth, (req, res) => {
-  const { name, type, genre, episode } = req.body;
-  const userEmail = getEmail(req, res);
-  const watched = new Watched({ name, type, genre, episode, userEmail });
+  const watchedItem = req.body;
+  watchedItem.userEmail = getEmail(req, res);
+  const watched = new Watched(watchedItem);
   watched.save(err => {
     if (err) {
       console.error(err);
