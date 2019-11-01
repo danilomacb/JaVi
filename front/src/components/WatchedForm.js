@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { addWatched, getWatched } from "../state/actions";
+import { addWatched, getWatched, updateWatched } from "../state/actions";
 
 class WatchedForm extends Component {
   componentDidMount() {
@@ -29,7 +29,13 @@ class WatchedForm extends Component {
           watched.genre = watched.genre.value;
           watched.episode = watched.episode.value;
 
-          this.props.dispatch(addWatched(watched));
+          if (this.props.match.path === "/add-assistido") {
+            this.props.dispatch(addWatched(watched));
+          }
+
+          if (this.props.match.path === "/assistido/:id") {
+            this.props.dispatch(updateWatched(this.props.match.params.id, watched));
+          }
         }}
       >
         <h1 className="mb-4">

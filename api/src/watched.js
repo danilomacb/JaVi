@@ -38,4 +38,11 @@ router.delete("/delete/:id", withAuth, async (req, res) => {
   res.status(200).send();
 });
 
+router.put("/update/:id", withAuth, async (req, res) => {
+  const id = req.params.id;
+  const watched = req.body;
+  await Watched.findByIdAndUpdate(id, watched, { new: true });
+  res.status(200).send();
+});
+
 module.exports = router;
