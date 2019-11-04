@@ -4,16 +4,6 @@ import { connect } from "react-redux";
 import { resetMessage } from "../state/actions";
 
 class Message extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      message: this.props.responseMessage
-    };
-  }
-  componentDidUpdate() {
-    document.getElementById("my-message").style.display = "block";
-  }
   componentWillUnmount() {
     this.props.dispatch(resetMessage());
   }
@@ -24,10 +14,14 @@ class Message extends Component {
 
   render() {
     return (
-      <div id="my-message" onClick={this.hide}>
-        <div className="my-message-text">{this.props.responseMessage}</div>
-        <div className="my-message-x">x</div>
-      </div>
+      <>
+        {this.props.responseMessage ? (
+          <div id="my-message" onClick={this.hide}>
+            <div className="my-message-text">{this.props.responseMessage}</div>
+            <div className="my-message-x">x</div>
+          </div>
+        ) : null}
+      </>
     );
   }
 }
