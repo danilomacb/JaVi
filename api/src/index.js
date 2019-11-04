@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-const user = require("./user");
-const watched = require("./watched");
+const user = require("./routes/user");
+const watched = require("./routes/watched");
 
 const app = express();
 
