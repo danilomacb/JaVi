@@ -26,7 +26,7 @@ class Message extends Component {
     return (
       <div id="my-message" onClick={this.hide}>
         <div className="my-message-text">{this.props.responseMessage}</div>
-        <div className="my-message-x">X</div>
+        <div className="my-message-x">x</div>
       </div>
     );
   }
