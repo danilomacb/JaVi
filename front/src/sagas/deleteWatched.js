@@ -1,9 +1,12 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
-import { DELETE_WATCHED, GET_WATCHEDS } from "../state/actions";
+import { DELETE_WATCHED, GET_WATCHEDS, SET_MESSAGE } from "../state/actions";
 
 function* deleteWatched(action) {
   const endpoint = "/watched/delete/" + action.id;
   const response = yield call(fetch, endpoint, { method: "DELETE" });
+
+  const responseMessage = yield response.json();
+  yield put({ type: SET_MESSAGE, responseMessage });
 
   if (response.status === 200) {
     yield put({ type: GET_WATCHEDS });

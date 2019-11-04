@@ -32,10 +32,15 @@ router.get("/get-all", withAuth, async (req, res) => {
   res.status(200).json(watcheds);
 });
 
-router.delete("/delete/:id", withAuth, async (req, res) => {
+router.delete("/delete/:id", withAuth, (req, res) => {
   const id = req.params.id;
-  await Watched.findByIdAndDelete(id);
-  res.status(200).send();
+  Watched.findByIdAndDelete(id, err => {
+    if (err) {
+      console.error(err);
+      res.status(500).json("Erro ao deletar");
+    }
+    res.status(200).json("Deletado com sucesso");
+  });
 });
 
 router.put("/update/:id", withAuth, async (req, res) => {
