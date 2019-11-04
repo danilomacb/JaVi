@@ -1,6 +1,6 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { UPDATE_WATCHED } from "../state/actions";
+import { UPDATE_WATCHED, SET_MESSAGE } from "../state/actions";
 import { push } from "connected-react-router";
 
 function* updateWatched(action) {
@@ -12,6 +12,9 @@ function* updateWatched(action) {
     },
     body: JSON.stringify(action.watched)
   });
+
+  const responseMessage = yield response.json();
+  yield put({ type: SET_MESSAGE, responseMessage });
 
   if (response.status === 200) {
     yield put(push("/assistidos"));

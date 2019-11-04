@@ -43,11 +43,16 @@ router.delete("/delete/:id", withAuth, (req, res) => {
   });
 });
 
-router.put("/update/:id", withAuth, async (req, res) => {
+router.put("/update/:id", withAuth, (req, res) => {
   const id = req.params.id;
   const watched = req.body;
-  await Watched.findByIdAndUpdate(id, watched, { new: true });
-  res.status(200).send();
+  Watched.findByIdAndUpdate(id, watched, { new: true }, err => {
+    if (err) {
+      console.error(err);
+      res.status(500).json("Erro ao atualizar");
+    }
+    res.status(200).json("Atualizado com sucesso");
+  });
 });
 
 module.exports = router;
