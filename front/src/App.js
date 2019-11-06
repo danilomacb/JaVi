@@ -6,7 +6,7 @@ import UserForm from "./components/UserForm";
 import WithAuth from "./components/WithAuth";
 import Navigation from "./components/Navigation";
 import CardList from "./components/CardList";
-import WatchedForm from "./components/WatchedForm";
+import WatchedForm from "./components/AddForm";
 
 export default class App extends Component {
   render() {
