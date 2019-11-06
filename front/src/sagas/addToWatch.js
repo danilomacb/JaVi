@@ -17,7 +17,7 @@ function* addToWatch(action) {
   yield put({ type: SET_MESSAGE, responseMessage });
 
   if (response.status === 200) {
-    yield put(push("/para-assistir"));
+    yield put(push("/lista-para-assistir"));
   }
 }
 

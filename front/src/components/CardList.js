@@ -11,7 +11,7 @@ class Watcheds extends Component {
     if (this.props.match.path === "/assistidos") {
       this.props.dispatch(getWatcheds());
     }
-    if (this.props.match.path === "/para-assistir") {
+    if (this.props.match.path === "/lista-para-assistir") {
       this.props.dispatch(getToWatchList());
     }
   }
@@ -22,7 +22,7 @@ class Watcheds extends Component {
     if (this.props.match.path === "/assistidos") {
       tempList = this.props.watcheds;
     }
-    if (this.props.match.path === "/para-assistir") {
+    if (this.props.match.path === "/lista-para-assistir") {
       tempList = this.props.toWatchList;
     }
 
@@ -61,7 +61,7 @@ class Watcheds extends Component {
                           Editar
                         </Link>
                       ) : (
-                        <Link className="btn my-button" to={"/paraAssistir/" + temp._id}>
+                        <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
                           Editar
                         </Link>
                       )}
@@ -72,7 +72,7 @@ class Watcheds extends Component {
                           if (this.props.match.path === "/assistidos") {
                             this.props.dispatch(deleteWatched(temp._id));
                           }
-                          if (this.props.match.path === "/para-assistir") {
+                          if (this.props.match.path === "/lista-para-assistir") {
                             console.log("deletar");
                           }
                         }}

@@ -16,7 +16,7 @@ class WatchedForm extends Component {
     if (this.props.match.path === "/assistido/:id") {
       this.props.dispatch(getWatched(this.props.match.params.id));
     }
-    if (this.props.match.path === "/paraAssistir/:id") {
+    if (this.props.match.path === "/para-assistir/:id") {
       this.props.dispatch(getToWatch(this.props.match.params.id));
     }
   }
@@ -27,7 +27,7 @@ class WatchedForm extends Component {
     if (this.props.match.path === "/assistido/:id" && this.props.watched) {
       temp = this.props.watched;
     }
-    if (this.props.match.path === "/paraAssistir/:id" && this.props.toWatch) {
+    if (this.props.match.path === "/para-assistir/:id" && this.props.toWatch) {
       temp = this.props.toWatch;
     }
 
@@ -62,7 +62,7 @@ class WatchedForm extends Component {
               this.props.dispatch(addToWatch(temp));
               break;
 
-            case "/paraAssistir/:id":
+            case "/para-assistir/:id":
               this.props.dispatch(updateToWatch(this.props.match.params.id, temp));
               break;
 
@@ -78,7 +78,7 @@ class WatchedForm extends Component {
             ? "Atualizar Assistido"
             : this.props.match.path === "/add-para-assistir"
             ? "Adicionar Para Assistir"
-            : this.props.match.path === "/paraAssistir/:id"
+            : this.props.match.path === "/para-assistir/:id"
             ? "Atualizar Para Assistir"
             : null}
         </h1>
