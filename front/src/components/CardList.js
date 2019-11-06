@@ -39,7 +39,9 @@ class Watcheds extends Component {
       <>
         <Message />
         <div className="my-container">
-          <Link to="/add-assistido">
+          <Link
+            to={this.props.match.path === "/assistidos" ? "/add-assistido" : "/add-para-assistir"}
+          >
             <div className="my-button mb-4 text-center">Adicionar Novo</div>
           </Link>
           <Row>

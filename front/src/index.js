@@ -20,6 +20,7 @@ import runDeleteWatched from "./sagas/deleteWatched";
 import runGetWatched from "./sagas/getWatched";
 import runUpdateWatched from "./sagas/updateWatched";
 import runGetToWatchList from "./sagas/getToWatchList";
+import runAddToWatch from "./sagas/addToWatch";
 
 const history = createBrowserHistory();
 
@@ -39,6 +40,7 @@ sagaMiddleware.run(runDeleteWatched);
 sagaMiddleware.run(runGetWatched);
 sagaMiddleware.run(runUpdateWatched);
 sagaMiddleware.run(runGetToWatchList);
+sagaMiddleware.run(runAddToWatch);
 
 ReactDOM.render(
   <Provider store={store}>

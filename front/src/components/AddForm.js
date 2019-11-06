@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { addWatched, getWatched, updateWatched } from "../state/actions";
+import { addWatched, getWatched, updateWatched, addToWatch } from "../state/actions";
 
 class WatchedForm extends Component {
   componentDidMount() {
@@ -12,10 +12,10 @@ class WatchedForm extends Component {
   }
 
   render() {
-    let watched = {};
+    let temp = {};
 
-    if (this.props.watched) {
-      watched = this.props.watched;
+    if (this.props.match.path === "/assistido/:id" && this.props.watched) {
+      temp = this.props.watched;
     }
 
     return (
@@ -24,24 +24,44 @@ class WatchedForm extends Component {
         onSubmit={event => {
           event.preventDefault();
 
-          watched.name = watched.name.value;
-          watched.type = watched.type.value;
-          watched.genre = watched.genre.value;
-          watched.season = watched.season.value;
-          watched.episode = watched.episode.value;
-          watched.comment = watched.comment.value;
-
-          if (this.props.match.path === "/add-assistido") {
-            this.props.dispatch(addWatched(watched));
+          temp.name = temp.name.value;
+          temp.type = temp.type.value;
+          temp.genre = temp.genre.value;
+          temp.season = temp.season.value;
+          if (
+            this.props.match.path === "/add-assistido" ||
+            this.props.match.path === "/assistido/:id"
+          ) {
+            temp.episode = temp.episode.value;
           }
+          temp.comment = temp.comment.value;
 
-          if (this.props.match.path === "/assistido/:id") {
-            this.props.dispatch(updateWatched(this.props.match.params.id, watched));
+          switch (this.props.match.path) {
+            case "/add-assistido":
+              this.props.dispatch(addWatched(temp));
+              break;
+
+            case "/assistido/:id":
+              this.props.dispatch(updateWatched(this.props.match.params.id, temp));
+              break;
+
+            case "/add-para-assistir":
+              this.props.dispatch(addToWatch(temp));
+              break;
+
+            default:
+              break;
           }
         }}
       >
         <h1 className="mb-4">
-          {this.props.match.path === "/assistido/:id" ? "Atualizar" : "Adicionar"} Assistido
+          {this.props.match.path === "/add-assistido"
+            ? "Adicionar Assistido"
+            : this.props.match.path === "/assistido/:id"
+            ? "Atualizar Assistido"
+            : this.props.match.path === "/add-para-assistir"
+            ? "Adicionar Para Assistir"
+            : null}
         </h1>
         <Form.Group as={Row}>
           <Form.Label column sm="2">
@@ -51,9 +71,9 @@ class WatchedForm extends Component {
             <Form.Control
               required
               type="text"
-              defaultValue={watched.name}
+              defaultValue={temp.name}
               ref={node => {
-                watched.name = node;
+                temp.name = node;
               }}
             />
           </Col>
@@ -65,9 +85,9 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
-              defaultValue={watched.type}
+              defaultValue={temp.type}
               ref={node => {
-                watched.type = node;
+                temp.type = node;
               }}
             />
           </Col>
@@ -79,9 +99,9 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
-              defaultValue={watched.genre}
+              defaultValue={temp.genre}
               ref={node => {
-                watched.genre = node;
+                temp.genre = node;
               }}
             />
           </Col>
@@ -93,27 +113,30 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
-              defaultValue={watched.season}
+              defaultValue={temp.season}
               ref={node => {
-                watched.season = node;
+                temp.season = node;
               }}
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row}>
-          <Form.Label column sm="2">
-            Episódio
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              type="text"
-              defaultValue={watched.episode}
-              ref={node => {
-                watched.episode = node;
-              }}
-            />
-          </Col>
-        </Form.Group>
+        {this.props.match.path === "/add-assistido" ||
+        this.props.match.path === "/assistido/:id" ? (
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              Episódio
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                type="text"
+                defaultValue={temp.episode}
+                ref={node => {
+                  temp.episode = node;
+                }}
+              />
+            </Col>
+          </Form.Group>
+        ) : null}
         <Form.Group as={Row}>
           <Form.Label column sm="2">
             Comentário
@@ -121,9 +144,9 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               as="textarea"
-              defaultValue={watched.comment}
+              defaultValue={temp.comment}
               ref={node => {
-                watched.comment = node;
+                temp.comment = node;
               }}
             />
           </Col>
