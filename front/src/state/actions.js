@@ -15,6 +15,9 @@ export const CHECK_TOKEN = "CHECK_TOKEN";
 export const GET_TO_WATCH_LIST = "GET_TO_WATCH_LIST";
 export const SET_TO_WATCH_LIST = "SET_TO_WATCH_LIST";
 export const ADD_TO_WATCH = "ADD_TO_WATCH";
+export const GET_TO_WATCH = "GET_TO_WATCH";
+export const SET_TO_WATCH = "SET_TO_WATCH";
+export const UPDATE_TO_WATCH = "UPDATE_TO_WATCH";
 
 export function setMessage(responseMessage) {
   return { type: SET_MESSAGE, responseMessage };
@@ -66,4 +69,12 @@ export function getToWatchList() {
 
 export function addToWatch(toWatch) {
   return { type: ADD_TO_WATCH, toWatch };
+}
+
+export function getToWatch(id) {
+  return { type: GET_TO_WATCH, id };
+}
+
+export function updateToWatch(id, toWatch) {
+  return { type: UPDATE_TO_WATCH, id, toWatch };
 }

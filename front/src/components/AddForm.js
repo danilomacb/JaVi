@@ -2,12 +2,22 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { addWatched, getWatched, updateWatched, addToWatch } from "../state/actions";
+import {
+  addWatched,
+  getWatched,
+  updateWatched,
+  addToWatch,
+  getToWatch,
+  updateToWatch
+} from "../state/actions";
 
 class WatchedForm extends Component {
   componentDidMount() {
     if (this.props.match.path === "/assistido/:id") {
       this.props.dispatch(getWatched(this.props.match.params.id));
+    }
+    if (this.props.match.path === "/paraAssistir/:id") {
+      this.props.dispatch(getToWatch(this.props.match.params.id));
     }
   }
 
@@ -16,6 +26,9 @@ class WatchedForm extends Component {
 
     if (this.props.match.path === "/assistido/:id" && this.props.watched) {
       temp = this.props.watched;
+    }
+    if (this.props.match.path === "/paraAssistir/:id" && this.props.toWatch) {
+      temp = this.props.toWatch;
     }
 
     return (
@@ -47,6 +60,10 @@ class WatchedForm extends Component {
 
             case "/add-para-assistir":
               this.props.dispatch(addToWatch(temp));
+              break;
+
+            case "/paraAssistir/:id":
+              this.props.dispatch(updateToWatch(this.props.match.params.id, temp));
               break;
 
             default:
@@ -160,7 +177,7 @@ class WatchedForm extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watched: state.reducer.watched };
+  return { watched: state.reducer.watched, toWatch: state.reducer.toWatch };
 }
 
 export default connect(mapStateToProps)(WatchedForm);

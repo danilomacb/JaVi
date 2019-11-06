@@ -61,7 +61,7 @@ class Watcheds extends Component {
                           Editar
                         </Link>
                       ) : (
-                        <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
+                        <Link className="btn my-button" to={"/paraAssistir/" + temp._id}>
                           Editar
                         </Link>
                       )}

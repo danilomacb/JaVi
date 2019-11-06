@@ -8,7 +8,8 @@ import {
   SET_WATCHED,
   SET_TOKEN,
   RESET_TOKEN,
-  SET_TO_WATCH_LIST
+  SET_TO_WATCH_LIST,
+  SET_TO_WATCH
 } from "./actions";
 
 function reducer(state = {}, action) {
@@ -27,6 +28,8 @@ function reducer(state = {}, action) {
       return { ...state, token: undefined };
     case SET_TO_WATCH_LIST:
       return { ...state, toWatchList: action.toWatchList };
+    case SET_TO_WATCH:
+      return { ...state, toWatch: action.toWatch };
     default:
       return state;
   }
