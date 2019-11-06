@@ -78,6 +78,8 @@ class WatchedForm extends Component {
             ? "Atualizar Assistido"
             : this.props.match.path === "/add-para-assistir"
             ? "Adicionar Para Assistir"
+            : this.props.match.path === "/paraAssistir/:id"
+            ? "Atualizar Para Assistir"
             : null}
         </h1>
         <Form.Group as={Row}>
