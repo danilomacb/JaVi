@@ -20,8 +20,9 @@ export default class App extends Component {
           <Route path="/assistidos" component={WithAuth(Watcheds)} />
           <Route path="/add-assistido" component={WithAuth(WatchedForm)} />
           <Route path="/assistido/:id" component={WithAuth(WatchedForm)} />
-          {/* <Route path="/add-para-assistir" component={} />
-          <Route path="/para-assistir" component={} /> */}
+          <Route path="/para-assistir" component={WithAuth(Watcheds)} />
+          <Route path="/add-para-assistir" component={WithAuth(WatchedForm)} />
+          <Route path="/para-assistir/:id" component={WithAuth(WatchedForm)} />
         </Switch>
       </div>
     );

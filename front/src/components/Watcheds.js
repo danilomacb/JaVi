@@ -3,16 +3,30 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
-import { getWatcheds, deleteWatched } from "../state/actions";
+import { getWatcheds, deleteWatched, getToWatchList } from "../state/actions";
 import Message from "./Message";
 
 class Watcheds extends Component {
   componentDidMount() {
-    this.props.dispatch(getWatcheds());
+    if (this.props.match.path === "/assistidos") {
+      this.props.dispatch(getWatcheds());
+    }
+    if (this.props.match.path === "/para-assistir") {
+      this.props.dispatch(getToWatchList());
+    }
   }
 
   render() {
-    if (!this.props.watcheds || this.props.watcheds.length === 0) {
+    let tempList;
+
+    if (this.props.match.path === "/assistidos") {
+      tempList = this.props.watcheds;
+    }
+    if (this.props.match.path === "/para-assistir") {
+      tempList = this.props.toWatchList;
+    }
+
+    if (!tempList || tempList.length === 0) {
       return (
         <div className="my-container">
           <Link to="/add-assistido">Adicionar Novo</Link>
@@ -29,23 +43,37 @@ class Watcheds extends Component {
             <div className="my-button mb-4 text-center">Adicionar Novo</div>
           </Link>
           <Row>
-            {this.props.watcheds.map((watched, _id) => (
+            {tempList.map((temp, _id) => (
               <Col key={_id} xs={12} sm={6} lg={4} className="mb-4">
                 <Card className="my-card">
-                  <Card.Header className="my-card-header">{watched.name}</Card.Header>
+                  <Card.Header className="my-card-header">{temp.name}</Card.Header>
                   <Card.Body>
                     <Card.Text>
-                      Tipo: {watched.type} <br />
-                      Gênero: {watched.genre} <br />
-                      {watched.episode ? "Episódio: " + watched.episode : null}
+                      Tipo: {temp.type} <br />
+                      Gênero: {temp.genre} <br />
+                      {temp.episode ? "Episódio: " + temp.episode : null}
                     </Card.Text>
                     <ButtonGroup className="w-100">
-                      <Link className="btn my-button" to={"/assistido/" + watched._id}>
-                        Editar
-                      </Link>
+                      {this.props.match.path === "/assistidos" ? (
+                        <Link className="btn my-button" to={"/assistido/" + temp._id}>
+                          Editar
+                        </Link>
+                      ) : (
+                        <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
+                          Editar
+                        </Link>
+                      )}
+
                       <button
                         className="btn my-button"
-                        onClick={() => this.props.dispatch(deleteWatched(watched._id))}
+                        onClick={() => {
+                          if (this.props.match.path === "/assistidos") {
+                            this.props.dispatch(deleteWatched(temp._id));
+                          }
+                          if (this.props.match.path === "/para-assistir") {
+                            console.log("deletar");
+                          }
+                        }}
                       >
                         Deletar
                       </button>
@@ -62,7 +90,7 @@ class Watcheds extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watcheds: state.reducer.watcheds };
+  return { watcheds: state.reducer.watcheds, toWatchList: state.reducer.toWatchList };
 }
 
 export default connect(mapStateToProps)(Watcheds);

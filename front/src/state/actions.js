@@ -12,6 +12,8 @@ export const UPDATE_WATCHED = "UPDATE_WATCHED";
 export const SET_TOKEN = "SET_TOKEN";
 export const RESET_TOKEN = "RESET_TOKEN";
 export const CHECK_TOKEN = "CHECK_TOKEN";
+export const GET_TO_WATCH_LIST = "GET_TO_WATCH_LIST";
+export const SET_TO_WATCH_LIST = "SET_TO_WATCH_LIST";
 
 export function setMessage(responseMessage) {
   return { type: SET_MESSAGE, responseMessage };
@@ -55,4 +57,8 @@ export function getWatched(id) {
 
 export function updateWatched(id, watched) {
   return { type: UPDATE_WATCHED, id, watched };
+}
+
+export function getToWatchList() {
+  return { type: GET_TO_WATCH_LIST };
 }

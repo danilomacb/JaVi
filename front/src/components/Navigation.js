@@ -27,7 +27,7 @@ class Navigation extends Component {
                 <Link to="/assistidos" className="nav-link">
                   Assistidos
                 </Link>
-                <Link to="/#" className="nav-link">
+                <Link to="/para-assistir" className="nav-link">
                   Para Assistir
                 </Link>
               </>
