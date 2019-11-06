@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const user = require("./routes/user");
 const watched = require("./routes/watched");
+const toWatch = require("./routes/to-watch");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/user", user);
 app.use("/watched", watched);
+app.use("/to-watch", toWatch);
 
 mongoose.connect(
   process.env.MONGO_URI,
