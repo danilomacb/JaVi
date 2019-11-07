@@ -18,6 +18,7 @@ export const ADD_TO_WATCH = "ADD_TO_WATCH";
 export const GET_TO_WATCH = "GET_TO_WATCH";
 export const SET_TO_WATCH = "SET_TO_WATCH";
 export const UPDATE_TO_WATCH = "UPDATE_TO_WATCH";
+export const DELETE_TO_WATCH = "DELETE_TO_WATCH";
 
 export function setMessage(responseMessage) {
   return { type: SET_MESSAGE, responseMessage };
@@ -77,4 +78,8 @@ export function getToWatch(id) {
 
 export function updateToWatch(id, toWatch) {
   return { type: UPDATE_TO_WATCH, id, toWatch };
+}
+
+export function deleteToWatch(id) {
+  return { type: DELETE_TO_WATCH, id };
 }

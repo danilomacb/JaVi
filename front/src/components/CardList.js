@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
-import { getWatcheds, deleteWatched, getToWatchList } from "../state/actions";
+import { getWatcheds, deleteWatched, getToWatchList, deleteToWatch } from "../state/actions";
 import Message from "./Message";
 
 class Watcheds extends Component {
@@ -73,7 +73,7 @@ class Watcheds extends Component {
                             this.props.dispatch(deleteWatched(temp._id));
                           }
                           if (this.props.match.path === "/lista-para-assistir") {
-                            console.log("deletar");
+                            this.props.dispatch(deleteToWatch(temp._id));
                           }
                         }}
                       >
