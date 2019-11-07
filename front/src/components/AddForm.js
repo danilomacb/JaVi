@@ -174,7 +174,7 @@ class WatchedForm extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watched: state.reducer.watched, toWatch: state.reducer.toWatch };
+  return { watched: state.watched.watched, toWatch: state.toWatch.toWatch };
 }
 
 export default connect(mapStateToProps)(WatchedForm);

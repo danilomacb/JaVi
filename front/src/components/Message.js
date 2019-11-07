@@ -27,7 +27,7 @@ class Message extends Component {
 }
 
 function mapStateToProps(state) {
-  return { responseMessage: state.reducer.responseMessage };
+  return { responseMessage: state.message.responseMessage };
 }
 
 export default connect(mapStateToProps)(Message);

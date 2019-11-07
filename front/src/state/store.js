@@ -3,7 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import { routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
 
-import createRootReducer from "./reducers";
+import createRootReducer from "./reducers/index";
 import runAddWatched from "../sagas/addWatched";
 import runAddUser from "../sagas/addUser";
 import runLogin from "../sagas/login";

@@ -91,7 +91,7 @@ class Watcheds extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watcheds: state.reducer.watcheds, toWatchList: state.reducer.toWatchList };
+  return { watcheds: state.watched.watcheds, toWatchList: state.toWatch.toWatchList };
 }
 
 export default connect(mapStateToProps)(Watcheds);

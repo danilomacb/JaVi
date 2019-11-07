@@ -62,7 +62,7 @@ class Navigation extends Component {
 }
 
 function mapStateToProps(state) {
-  return { token: state.reducer.token };
+  return { token: state.auth.token };
 }
 
 export default connect(mapStateToProps)(Navigation);
