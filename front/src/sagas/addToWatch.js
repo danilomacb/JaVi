@@ -1,7 +1,8 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
-
-import { ADD_TO_WATCH, SET_MESSAGE } from "../state/actions";
 import { push } from "connected-react-router";
+
+import { ADD_TO_WATCH } from "../state/actions/toWatch";
+import { SET_MESSAGE } from "../state/actions/message";
 
 function* addToWatch(action) {
   const endpoint = "/to-watch/add";

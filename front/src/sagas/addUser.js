@@ -1,5 +1,7 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
-import { ADD_USER, SET_MESSAGE } from "../state/actions";
+
+import { ADD_USER } from "../state/actions/user";
+import { SET_MESSAGE } from "../state/actions/message";
 
 function* addUser(action) {
   const endpoint = "/user/add";

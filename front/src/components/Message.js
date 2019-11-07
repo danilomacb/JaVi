@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { resetMessage } from "../state/actions";
+import { resetMessage } from "../state/actions/message";
 
 class Message extends Component {
   componentWillUnmount() {

@@ -1,6 +1,6 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { CHECK_TOKEN, SET_TOKEN, RESET_TOKEN } from "../state/actions";
+import { CHECK_TOKEN, SET_TOKEN, RESET_TOKEN } from "../state/actions/auth";
 
 function* checkToken() {
   const endpoint = "/user/checkToken";

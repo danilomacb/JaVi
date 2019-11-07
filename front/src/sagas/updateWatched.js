@@ -1,7 +1,8 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
-
-import { UPDATE_WATCHED, SET_MESSAGE } from "../state/actions";
 import { push } from "connected-react-router";
+
+import { UPDATE_WATCHED } from "../state/actions/watched";
+import { SET_MESSAGE } from "../state/actions/message";
 
 function* updateWatched(action) {
   const endpoint = "/watched/update/" + action.id;

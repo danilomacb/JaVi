@@ -2,14 +2,9 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import {
-  addWatched,
-  getWatched,
-  updateWatched,
-  addToWatch,
-  getToWatch,
-  updateToWatch
-} from "../state/actions";
+import { getWatched, addWatched, updateWatched } from "../state/actions/watched";
+
+import { getToWatch, addToWatch, updateToWatch } from "../state/actions/toWatch";
 
 class WatchedForm extends Component {
   componentDidMount() {

@@ -1,5 +1,7 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
-import { LOGIN, SET_MESSAGE, SET_TOKEN } from "../state/actions";
+
+import { LOGIN, SET_TOKEN } from "../state/actions/auth";
+import { SET_MESSAGE } from "../state/actions/message";
 
 function* login(action) {
   const endpoint = "/user/login";

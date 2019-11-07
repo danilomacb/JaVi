@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { addUser, login } from "../state/actions";
+import { addUser } from "../state/actions/user";
+import { login } from "../state/actions/auth";
 
 class UserForm extends Component {
   render() {
