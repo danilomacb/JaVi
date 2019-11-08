@@ -4,7 +4,7 @@ import { LOGIN, SET_TOKEN } from "../../state/actions/auth";
 import { SET_MESSAGE } from "../../state/actions/message";
 
 function* login(action) {
-  const endpoint = "/user/login";
+  const endpoint = "/auth/login";
   const response = yield call(fetch, endpoint, {
     method: "POST",
     headers: {
