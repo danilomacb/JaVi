@@ -19,7 +19,12 @@ router.get("/get-all", withAuth, async (req, res) => {
 });
 
 router.post("/add", withAuth, (req, res) => {
-  const watchedItem = req.body;
+  let watchedItem = req.body;
+  for (element in watchedItem) {
+    if (watchedItem[element] === "") {
+      delete watchedItem[element];
+    }
+  }
   watchedItem.userEmail = getEmail(req, res);
   const watched = new Watched(watchedItem);
   watched.save(err => {

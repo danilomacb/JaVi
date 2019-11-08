@@ -20,6 +20,11 @@ router.get("/get-all", withAuth, async (req, res) => {
 
 router.post("/add", withAuth, (req, res) => {
   const toWatchItem = req.body;
+  for (element in toWatchItem) {
+    if (toWatchItem[element] === "") {
+      delete toWatchItem[element];
+    }
+  }
   toWatchItem.userEmail = getEmail(req, res);
   const toWatch = new ToWatch(toWatchItem);
   toWatch.save(err => {
