@@ -6,6 +6,18 @@ const getEmail = require("../utils/getEmail");
 
 const router = express.Router();
 
+router.get("/get/:id", withAuth, async (req, res) => {
+  const id = req.params.id;
+  const toWatch = await ToWatch.findById(id);
+  res.status(200).json(toWatch);
+});
+
+router.get("/get-all", withAuth, async (req, res) => {
+  const userEmail = getEmail(req, res);
+  const toWatchList = await ToWatch.find({ userEmail });
+  res.status(200).json(toWatchList);
+});
+
 router.post("/add", withAuth, (req, res) => {
   const toWatchItem = req.body;
   toWatchItem.userEmail = getEmail(req, res);
@@ -18,18 +30,6 @@ router.post("/add", withAuth, (req, res) => {
       res.status(200).json("Adicionado com sucesso");
     }
   });
-});
-
-router.get("/get/:id", withAuth, async (req, res) => {
-  const id = req.params.id;
-  const toWatch = await ToWatch.findById(id);
-  res.status(200).json(toWatch);
-});
-
-router.get("/get-all", withAuth, async (req, res) => {
-  const userEmail = getEmail(req, res);
-  const toWatchList = await ToWatch.find({ userEmail });
-  res.status(200).json(toWatchList);
 });
 
 router.delete("/delete/:id", withAuth, (req, res) => {
