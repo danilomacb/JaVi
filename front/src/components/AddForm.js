@@ -85,6 +85,7 @@ class WatchedForm extends Component {
             <Form.Control
               required
               type="text"
+              placeholder="Título da obra"
               defaultValue={temp.name}
               ref={node => {
                 temp.name = node;
@@ -99,6 +100,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              placeholder="Filme, Série, Animação, Anime, ..."
               defaultValue={temp.type}
               ref={node => {
                 temp.type = node;
@@ -113,6 +115,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              placeholder="Ação, Comédia, Romance, Shounen, ..."
               defaultValue={temp.genre}
               ref={node => {
                 temp.genre = node;
@@ -127,6 +130,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               type="text"
+              placeholder="Número ou nome da temporada"
               defaultValue={temp.season}
               ref={node => {
                 temp.season = node;
@@ -143,6 +147,7 @@ class WatchedForm extends Component {
             <Col sm="10">
               <Form.Control
                 type="text"
+                placeholder="Número ou nome do episódio"
                 defaultValue={temp.episode}
                 ref={node => {
                   temp.episode = node;
@@ -158,6 +163,7 @@ class WatchedForm extends Component {
           <Col sm="10">
             <Form.Control
               as="textarea"
+              placeholder="Bom, ruim, quero muito ver, ou qualquer comentário que você desejar"
               defaultValue={temp.comment}
               ref={node => {
                 temp.comment = node;
