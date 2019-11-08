@@ -15,6 +15,9 @@ const ToWatchSchema = new mongoose.Schema(
     season: {
       type: String
     },
+    link: {
+      type: String
+    },
     comment: {
       type: String
     },

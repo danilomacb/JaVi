@@ -42,8 +42,8 @@ class WatchedForm extends Component {
           ) {
             temp.episode = temp.episode.value;
             temp.time = temp.time.value;
-            temp.link = temp.link.value;
           }
+          temp.link = temp.link.value;
           temp.comment = temp.comment.value;
 
           switch (this.props.match.path) {
@@ -173,23 +173,23 @@ class WatchedForm extends Component {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">
-                Link
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  type="text"
-                  placeholder="www.exemplo.com"
-                  defaultValue={temp.link}
-                  ref={node => {
-                    temp.link = node;
-                  }}
-                />
-              </Col>
-            </Form.Group>
           </>
         ) : null}
+        <Form.Group as={Row}>
+          <Form.Label column sm="2">
+            Link
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control
+              type="text"
+              placeholder="www.exemplo.com"
+              defaultValue={temp.link}
+              ref={node => {
+                temp.link = node;
+              }}
+            />
+          </Col>
+        </Form.Group>
         <Form.Group as={Row}>
           <Form.Label column sm="2">
             Comentário
