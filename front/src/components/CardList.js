@@ -46,11 +46,20 @@ class WatchedList extends Component {
                   <Card className="my-card">
                     <Card.Header className="my-card-header">{temp.name}</Card.Header>
                     <Card.Body>
-                      <Card.Text>
-                        Tipo: {temp.type} <br />
-                        Gênero: {temp.genre} <br />
-                        {temp.episode ? "Episódio: " + temp.episode : null}
-                      </Card.Text>
+                      <div>
+                        {temp.season ? (
+                          <p className="my-card-content">Temporada: {temp.season}</p>
+                        ) : null}
+                        {temp.episode ? (
+                          <p className="my-card-content">Episódio: {temp.episode}</p>
+                        ) : null}
+                        {temp.time ? <p className="my-card-content">Tempo: {temp.time}</p> : null}
+                        {temp.link ? (
+                          <a href={temp.link} target="_self" className="my-card-content">
+                            Link: {temp.link}
+                          </a>
+                        ) : null}
+                      </div>
                       <ButtonGroup className="w-100">
                         {this.props.match.path === "/assistidos" ? (
                           <Link className="btn my-button" to={"/assistido/" + temp._id}>
