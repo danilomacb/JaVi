@@ -4,19 +4,19 @@ import { routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
 
 import createRootReducer from "./reducers/index";
-import runAddWatched from "../sagas/addWatched";
-import runAddUser from "../sagas/addUser";
-import runLogin from "../sagas/login";
-import runGetWatcheds from "../sagas/getWatcheds";
-import runCheckToken from "../sagas/checkToken";
-import runDeleteWatched from "../sagas/deleteWatched";
-import runGetWatched from "../sagas/getWatched";
-import runUpdateWatched from "../sagas/updateWatched";
-import runGetToWatchList from "../sagas/getToWatchList";
-import runAddToWatch from "../sagas/addToWatch";
-import runGetToWatch from "../sagas/getToWatch";
-import runUpdateToWatch from "../sagas/updateToWatch";
-import runDeleteToWatch from "../sagas/deleteToWatch";
+import runAddWatched from "../sagas/watched/addWatched";
+import runAddUser from "../sagas/user/addUser";
+import runLogin from "../sagas/auth/login";
+import runGetWatcheds from "../sagas/watched/getWatcheds";
+import runCheckToken from "../sagas/auth/checkToken";
+import runDeleteWatched from "../sagas/watched/deleteWatched";
+import runGetWatched from "../sagas/watched/getWatched";
+import runUpdateWatched from "../sagas/watched/updateWatched";
+import runGetToWatchList from "../sagas/toWatch/getToWatchList";
+import runAddToWatch from "../sagas/toWatch/addToWatch";
+import runGetToWatch from "../sagas/toWatch/getToWatch";
+import runUpdateToWatch from "../sagas/toWatch/updateToWatch";
+import runDeleteToWatch from "../sagas/toWatch/deleteToWatch";
 
 export const history = createBrowserHistory();
 

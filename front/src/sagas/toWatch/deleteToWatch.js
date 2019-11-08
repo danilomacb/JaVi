@@ -1,7 +1,7 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { DELETE_TO_WATCH, GET_TO_WATCH_LIST } from "../state/actions/toWatch";
-import { SET_MESSAGE } from "../state/actions/message";
+import { DELETE_TO_WATCH, GET_TO_WATCH_LIST } from "../../state/actions/toWatch";
+import { SET_MESSAGE } from "../../state/actions/message";
 
 function* deleteToWatch(action) {
   const endpoint = "/to-watch/delete/" + action.id;

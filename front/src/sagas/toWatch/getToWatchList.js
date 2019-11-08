@@ -1,6 +1,6 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { GET_TO_WATCH_LIST, SET_TO_WATCH_LIST } from "../state/actions/toWatch";
+import { GET_TO_WATCH_LIST, SET_TO_WATCH_LIST } from "../../state/actions/toWatch";
 
 function* getToWatchList() {
   const endpoint = "/to-watch/get-all";

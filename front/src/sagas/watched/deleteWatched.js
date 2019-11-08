@@ -1,7 +1,7 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { DELETE_WATCHED, GET_WATCHEDS } from "../state/actions/watched";
-import { SET_MESSAGE } from "../state/actions/message";
+import { DELETE_WATCHED, GET_WATCHEDS } from "../../state/actions/watched";
+import { SET_MESSAGE } from "../../state/actions/message";
 
 function* deleteWatched(action) {
   const endpoint = "/watched/delete/" + action.id;

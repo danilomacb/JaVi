@@ -1,10 +1,10 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { LOGIN, SET_TOKEN } from "../state/actions/auth";
-import { SET_MESSAGE } from "../state/actions/message";
+import { ADD_USER } from "../../state/actions/user";
+import { SET_MESSAGE } from "../../state/actions/message";
 
-function* login(action) {
-  const endpoint = "/user/login";
+function* addUser(action) {
+  const endpoint = "/user/add";
   const response = yield call(fetch, endpoint, {
     method: "POST",
     headers: {
@@ -15,16 +15,12 @@ function* login(action) {
 
   const responseMessage = yield response.json();
   yield put({ type: SET_MESSAGE, responseMessage });
-
-  if (response.status === 200) {
-    yield put({ type: SET_TOKEN, token: document.cookie.replace("token=", "") });
-  }
 }
 
 function* getAction() {
-  yield takeEvery(LOGIN, login);
+  yield takeEvery(ADD_USER, addUser);
 }
 
-export default function* runLogin() {
+export default function* runAddUser() {
   yield all([getAction()]);
 }

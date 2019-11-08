@@ -1,6 +1,6 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { GET_WATCHED, SET_WATCHED } from "../state/actions/watched";
+import { GET_WATCHED, SET_WATCHED } from "../../state/actions/watched";
 
 function* getWatched(action) {
   const endpoint = "/watched/get/" + action.id;
