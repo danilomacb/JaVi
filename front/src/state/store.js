@@ -4,19 +4,19 @@ import { routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
 
 import createRootReducer from "./reducers/index";
-import runAddWatched from "../sagas/watched/addWatched";
-import runAddUser from "../sagas/user/addUser";
-import runLogin from "../sagas/auth/login";
-import runGetWatcheds from "../sagas/watched/getWatcheds";
-import runCheckToken from "../sagas/auth/checkToken";
-import runDeleteWatched from "../sagas/watched/deleteWatched";
-import runGetWatched from "../sagas/watched/getWatched";
-import runUpdateWatched from "../sagas/watched/updateWatched";
-import runGetToWatchList from "../sagas/toWatch/getToWatchList";
-import runAddToWatch from "../sagas/toWatch/addToWatch";
-import runGetToWatch from "../sagas/toWatch/getToWatch";
-import runUpdateToWatch from "../sagas/toWatch/updateToWatch";
-import runDeleteToWatch from "../sagas/toWatch/deleteToWatch";
+import login from "../sagas/auth/login";
+import checkToken from "../sagas/auth/checkToken";
+import addUser from "../sagas/user/addUser";
+import getWatched from "../sagas/watched/getWatched";
+import getWatcheds from "../sagas/watched/getWatcheds";
+import addWatched from "../sagas/watched/addWatched";
+import deleteWatched from "../sagas/watched/deleteWatched";
+import updateWatched from "../sagas/watched/updateWatched";
+import getToWatch from "../sagas/toWatch/getToWatch";
+import getToWatchList from "../sagas/toWatch/getToWatchList";
+import addToWatch from "../sagas/toWatch/addToWatch";
+import deleteToWatch from "../sagas/toWatch/deleteToWatch";
+import updateToWatch from "../sagas/toWatch/updateToWatch";
 
 export const history = createBrowserHistory();
 
@@ -28,19 +28,19 @@ export default function configureStore() {
     applyMiddleware(routerMiddleware(history), sagaMiddleware)
   );
 
-  sagaMiddleware.run(runAddWatched);
-  sagaMiddleware.run(runAddUser);
-  sagaMiddleware.run(runLogin);
-  sagaMiddleware.run(runGetWatcheds);
-  sagaMiddleware.run(runCheckToken);
-  sagaMiddleware.run(runDeleteWatched);
-  sagaMiddleware.run(runGetWatched);
-  sagaMiddleware.run(runUpdateWatched);
-  sagaMiddleware.run(runGetToWatchList);
-  sagaMiddleware.run(runAddToWatch);
-  sagaMiddleware.run(runGetToWatch);
-  sagaMiddleware.run(runUpdateToWatch);
-  sagaMiddleware.run(runDeleteToWatch);
+  sagaMiddleware.run(login);
+  sagaMiddleware.run(checkToken);
+  sagaMiddleware.run(addUser);
+  sagaMiddleware.run(getWatched);
+  sagaMiddleware.run(getWatcheds);
+  sagaMiddleware.run(addWatched);
+  sagaMiddleware.run(deleteWatched);
+  sagaMiddleware.run(updateWatched);
+  sagaMiddleware.run(getToWatch);
+  sagaMiddleware.run(getToWatchList);
+  sagaMiddleware.run(addToWatch);
+  sagaMiddleware.run(deleteToWatch);
+  sagaMiddleware.run(updateToWatch);
 
   return store;
 }
