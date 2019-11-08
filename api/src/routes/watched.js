@@ -1,8 +1,8 @@
 const express = require("express");
 
 const Watched = require("../models/Watched");
-const withAuth = require("../utils/with-auth");
-const getEmail = require("../utils/get-email");
+const withAuth = require("../utils/withAuth");
+const getEmail = require("../utils/getEmail");
 
 const router = express.Router();
 

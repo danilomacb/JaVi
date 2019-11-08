@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const user = require("./routes/user");
 const watched = require("./routes/watched");
-const toWatch = require("./routes/to-watch");
+const toWatch = require("./routes/toWatch");
 
 const app = express();
 
