@@ -37,7 +37,7 @@ class UserForm extends Component {
           <Col sm="10">
             <Form.Control
               type="email"
-              placeholder="Email"
+              placeholder="seuemail@exemplo.com"
               ref={node => {
                 user.email = node;
               }}
@@ -52,7 +52,7 @@ class UserForm extends Component {
           <Col sm="10">
             <Form.Control
               type="password"
-              placeholder="Senha"
+              placeholder="******"
               ref={node => {
                 user.password = node;
               }}
