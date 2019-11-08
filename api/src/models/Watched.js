@@ -18,6 +18,12 @@ const WatchedSchema = new mongoose.Schema(
     episode: {
       type: String
     },
+    time: {
+      type: String
+    },
+    link: {
+      type: String
+    },
     comment: {
       type: String
     },

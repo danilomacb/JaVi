@@ -41,6 +41,8 @@ class WatchedForm extends Component {
             this.props.match.path === "/assistido/:id"
           ) {
             temp.episode = temp.episode.value;
+            temp.time = temp.time.value;
+            temp.link = temp.link.value;
           }
           temp.comment = temp.comment.value;
 
@@ -140,21 +142,53 @@ class WatchedForm extends Component {
         </Form.Group>
         {this.props.match.path === "/add-assistido" ||
         this.props.match.path === "/assistido/:id" ? (
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">
-              Episódio
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control
-                type="text"
-                placeholder="Número ou nome do episódio"
-                defaultValue={temp.episode}
-                ref={node => {
-                  temp.episode = node;
-                }}
-              />
-            </Col>
-          </Form.Group>
+          <>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
+                Episódio
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control
+                  type="text"
+                  placeholder="Número ou nome do episódio"
+                  defaultValue={temp.episode}
+                  ref={node => {
+                    temp.episode = node;
+                  }}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
+                Tempo
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control
+                  type="text"
+                  placeholder="1 hora, 50s, 11:25, ..."
+                  defaultValue={temp.time}
+                  ref={node => {
+                    temp.time = node;
+                  }}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
+                Link
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control
+                  type="text"
+                  placeholder="www.exemplo.com"
+                  defaultValue={temp.link}
+                  ref={node => {
+                    temp.link = node;
+                  }}
+                />
+              </Col>
+            </Form.Group>
+          </>
         ) : null}
         <Form.Group as={Row}>
           <Form.Label column sm="2">
