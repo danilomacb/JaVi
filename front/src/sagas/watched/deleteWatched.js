@@ -1,6 +1,6 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { DELETE_WATCHED, GET_WATCHEDS } from "../../state/actions/watched";
+import { DELETE_WATCHED, GET_WATCHED_LIST } from "../../state/actions/watched";
 import { SET_MESSAGE } from "../../state/actions/message";
 
 function* deleteWatched(action) {
@@ -11,7 +11,7 @@ function* deleteWatched(action) {
   yield put({ type: SET_MESSAGE, responseMessage });
 
   if (response.status === 200) {
-    yield put({ type: GET_WATCHEDS });
+    yield put({ type: GET_WATCHED_LIST });
   }
 }
 

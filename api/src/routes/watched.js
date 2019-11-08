@@ -28,8 +28,8 @@ router.get("/get/:id", withAuth, async (req, res) => {
 
 router.get("/get-all", withAuth, async (req, res) => {
   const userEmail = getEmail(req, res);
-  const watcheds = await Watched.find({ userEmail });
-  res.status(200).json(watcheds);
+  const watchedList = await Watched.find({ userEmail });
+  res.status(200).json(watchedList);
 });
 
 router.delete("/delete/:id", withAuth, (req, res) => {

@@ -1,11 +1,11 @@
-import { SET_WATCHEDS, SET_WATCHED } from "../actions/watched";
+import { SET_WATCHED, SET_WATCHED_LIST } from "../actions/watched";
 
 function watched(state = {}, action) {
   switch (action.type) {
-    case SET_WATCHEDS:
-      return { ...state, watcheds: action.watcheds };
     case SET_WATCHED:
       return { ...state, watched: action.watched };
+    case SET_WATCHED_LIST:
+      return { ...state, watchedList: action.watchedList };
     default:
       return state;
   }

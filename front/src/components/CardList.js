@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
-import { getWatcheds, deleteWatched } from "../state/actions/watched";
+import { getWatchedList, deleteWatched } from "../state/actions/watched";
 import { getToWatchList, deleteToWatch } from "../state/actions/toWatch";
 import Message from "./Message";
 
-class Watcheds extends Component {
+class WatchedList extends Component {
   componentDidMount() {
     if (this.props.match.path === "/assistidos") {
-      this.props.dispatch(getWatcheds());
+      this.props.dispatch(getWatchedList());
     }
     if (this.props.match.path === "/lista-para-assistir") {
       this.props.dispatch(getToWatchList());
@@ -21,7 +21,7 @@ class Watcheds extends Component {
     let tempList;
 
     if (this.props.match.path === "/assistidos") {
-      tempList = this.props.watcheds;
+      tempList = this.props.watchedList;
     }
     if (this.props.match.path === "/lista-para-assistir") {
       tempList = this.props.toWatchList;
@@ -91,7 +91,7 @@ class Watcheds extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watcheds: state.watched.watcheds, toWatchList: state.toWatch.toWatchList };
+  return { watchedList: state.watched.watchedList, toWatchList: state.toWatch.toWatchList };
 }
 
-export default connect(mapStateToProps)(Watcheds);
+export default connect(mapStateToProps)(WatchedList);

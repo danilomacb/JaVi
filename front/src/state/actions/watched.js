@@ -1,17 +1,17 @@
 export const GET_WATCHED = "GET_WATCHED";
-export const GET_WATCHEDS = "GET_WATCHEDS";
+export const GET_WATCHED_LIST = "GET_WATCHED_LIST";
 export const ADD_WATCHED = "ADD_WATCHED";
 export const DELETE_WATCHED = "DELETE_WATCHED";
 export const UPDATE_WATCHED = "UPDATE_WATCHED";
 export const SET_WATCHED = "SET_WATCHED";
-export const SET_WATCHEDS = "SET_WATCHEDS";
+export const SET_WATCHED_LIST = "SET_WATCHED_LIST";
 
 export function getWatched(id) {
   return { type: GET_WATCHED, id };
 }
 
-export function getWatcheds() {
-  return { type: GET_WATCHEDS };
+export function getWatchedList() {
+  return { type: GET_WATCHED_LIST };
 }
 
 export function addWatched(watched) {

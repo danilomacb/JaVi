@@ -8,7 +8,7 @@ import login from "../sagas/auth/login";
 import checkToken from "../sagas/auth/checkToken";
 import addUser from "../sagas/user/addUser";
 import getWatched from "../sagas/watched/getWatched";
-import getWatcheds from "../sagas/watched/getWatcheds";
+import getWatchedList from "../sagas/watched/getWatchedList";
 import addWatched from "../sagas/watched/addWatched";
 import deleteWatched from "../sagas/watched/deleteWatched";
 import updateWatched from "../sagas/watched/updateWatched";
@@ -32,7 +32,7 @@ export default function configureStore() {
   sagaMiddleware.run(checkToken);
   sagaMiddleware.run(addUser);
   sagaMiddleware.run(getWatched);
-  sagaMiddleware.run(getWatcheds);
+  sagaMiddleware.run(getWatchedList);
   sagaMiddleware.run(addWatched);
   sagaMiddleware.run(deleteWatched);
   sagaMiddleware.run(updateWatched);
