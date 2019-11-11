@@ -55,9 +55,15 @@ class WatchedList extends Component {
                         ) : null}
                         {temp.time ? <p className="my-card-content">Tempo: {temp.time}</p> : null}
                         {temp.link ? (
-                          <a href={temp.link} target="_self" className="my-card-content">
-                            Link: {temp.link}
-                          </a>
+                          temp.link.charAt(0) === "h" ? (
+                            <a href={temp.link} target="__blank" className="my-card-content">
+                              Link: {temp.link}
+                            </a>
+                          ) : (
+                            <a href={"//" + temp.link} target="__blank" className="my-card-content">
+                              Link: {temp.link}
+                            </a>
+                          )
                         ) : null}
                       </div>
                       <ButtonGroup className="w-100">
