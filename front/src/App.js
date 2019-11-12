@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
+import "./styles/app.css";
 import Home from "./components/Home";
 import UserForm from "./components/UserForm";
 import WithAuth from "./components/WithAuth";

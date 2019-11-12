@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import "../styles/message.css";
 import { resetMessage } from "../state/actions/message";
 
 class Message extends Component {

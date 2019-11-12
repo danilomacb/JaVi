@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
+import "../styles/cardList.css";
 import { getWatchedList, deleteWatched } from "../state/actions/watched";
 import { getToWatchList, deleteToWatch } from "../state/actions/toWatch";
 import Message from "./Message";

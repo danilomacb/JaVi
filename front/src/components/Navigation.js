@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import { connect } from "react-redux";
 
+import "../styles/navigation.css";
 import { checkToken, resetToken } from "../state/actions/auth";
 
 class Navigation extends Component {

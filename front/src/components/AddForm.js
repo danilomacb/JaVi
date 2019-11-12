@@ -3,7 +3,6 @@ import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { getWatched, addWatched, updateWatched } from "../state/actions/watched";
-
 import { getToWatch, addToWatch, updateToWatch } from "../state/actions/toWatch";
 
 class WatchedForm extends Component {
