@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrashAlt, faPlusSquare } from "@fortawesome/free-regular-svg-icons";
 
 import "../styles/cardList.css";
 import { checkToken } from "../state/actions/auth";
@@ -21,8 +23,6 @@ class WatchedList extends Component {
   }
 
   render() {
-    console.log(this.props.token, this.props.watchedList, this.props.toWatchList);
-
     let tempList;
 
     if (this.props.match.path === "/lista-de-assistidos") {
@@ -54,7 +54,10 @@ class WatchedList extends Component {
                 : "/add-para-assistir"
             }
           >
-            <div className="my-button mb-4 text-center">Adicionar Novo</div>
+            <div className="my-button mb-4 text-center">
+              <FontAwesomeIcon icon={faPlusSquare} className="mr-1" />
+              Adicionar Novo
+            </div>
           </Link>
           {tempList && tempList.length > 0 ? (
             <Row>
@@ -86,10 +89,12 @@ class WatchedList extends Component {
                       <ButtonGroup className="w-100">
                         {this.props.match.path === "/lista-de-assistidos" ? (
                           <Link className="btn my-button" to={"/assistido/" + temp._id}>
+                            <FontAwesomeIcon icon={faEdit} className="mr-1" />
                             Editar
                           </Link>
                         ) : (
                           <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
+                            <FontAwesomeIcon icon={faEdit} className="mr-1" />
                             Editar
                           </Link>
                         )}
@@ -105,6 +110,7 @@ class WatchedList extends Component {
                             }
                           }}
                         >
+                          <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
                           Deletar
                         </button>
                       </ButtonGroup>
