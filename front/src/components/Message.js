@@ -11,13 +11,14 @@ class Message extends Component {
 
   hide() {
     document.getElementById("my-message").style.display = "none";
+    this.props.dispatch(resetMessage());
   }
 
   render() {
     return (
       <>
         {this.props.responseMessage ? (
-          <div id="my-message" onClick={this.hide}>
+          <div id="my-message" onClick={this.hide.bind(this)}>
             <div className="my-message-text">{this.props.responseMessage}</div>
             <div className="my-message-x">x</div>
           </div>
