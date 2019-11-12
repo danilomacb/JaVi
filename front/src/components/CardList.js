@@ -12,27 +12,32 @@ import Message from "./Message";
 class WatchedList extends Component {
   componentDidMount() {
     this.props.dispatch(checkToken());
+  }
 
-    if (this.props.match.path === "/lista-de-assistidos") {
-      this.props.dispatch(getWatchedList());
-    }
-    if (this.props.match.path === "/lista-para-assistir") {
-      this.props.dispatch(getToWatchList());
+  componentDidUpdate() {
+    if (!this.props.token) {
+      return <Redirect to="/entrar" />;
     }
   }
 
   render() {
+    console.log(this.props.token, this.props.watchedList, this.props.toWatchList);
+
     let tempList;
 
     if (this.props.match.path === "/lista-de-assistidos") {
-      tempList = this.props.watchedList;
+      if (!this.props.watchedList) {
+        this.props.dispatch(getWatchedList());
+      } else {
+        tempList = this.props.watchedList;
+      }
     }
     if (this.props.match.path === "/lista-para-assistir") {
-      tempList = this.props.toWatchList;
-    }
-
-    if (!this.props.token) {
-      return <Redirect to="/entrar" />;
+      if (!this.props.toWatchList) {
+        this.props.dispatch(getToWatchList());
+      } else {
+        tempList = this.props.toWatchList;
+      }
     }
 
     return (
