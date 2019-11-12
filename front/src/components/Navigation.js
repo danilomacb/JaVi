@@ -25,7 +25,7 @@ class Navigation extends Component {
             </Link>
             {this.props.token ? (
               <>
-                <Link to="/assistidos" className="nav-link">
+                <Link to="/lista-de-assistidos" className="nav-link">
                   Assistidos
                 </Link>
                 <Link to="/lista-para-assistir" className="nav-link">

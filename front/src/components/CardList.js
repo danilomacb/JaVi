@@ -13,7 +13,7 @@ class WatchedList extends Component {
   componentDidMount() {
     this.props.dispatch(checkToken());
 
-    if (this.props.match.path === "/assistidos") {
+    if (this.props.match.path === "/lista-de-assistidos") {
       this.props.dispatch(getWatchedList());
     }
     if (this.props.match.path === "/lista-para-assistir") {
@@ -24,7 +24,7 @@ class WatchedList extends Component {
   render() {
     let tempList;
 
-    if (this.props.match.path === "/assistidos") {
+    if (this.props.match.path === "/lista-de-assistidos") {
       tempList = this.props.watchedList;
     }
     if (this.props.match.path === "/lista-para-assistir") {
@@ -40,10 +40,14 @@ class WatchedList extends Component {
         <Message />
         <div className="my-container">
           <h1 className="text-center">
-            {this.props.match.path === "/assistidos" ? "Assistidos" : "Para Assistir"}
+            {this.props.match.path === "/lista-de-assistidos" ? "Assistidos" : "Para Assistir"}
           </h1>
           <Link
-            to={this.props.match.path === "/assistidos" ? "/add-assistido" : "/add-para-assistir"}
+            to={
+              this.props.match.path === "/lista-de-assistidos"
+                ? "/add-assistido"
+                : "/add-para-assistir"
+            }
           >
             <div className="my-button mb-4 text-center">Adicionar Novo</div>
           </Link>
@@ -75,7 +79,7 @@ class WatchedList extends Component {
                         ) : null}
                       </div>
                       <ButtonGroup className="w-100">
-                        {this.props.match.path === "/assistidos" ? (
+                        {this.props.match.path === "/lista-de-assistidos" ? (
                           <Link className="btn my-button" to={"/assistido/" + temp._id}>
                             Editar
                           </Link>
@@ -88,7 +92,7 @@ class WatchedList extends Component {
                         <button
                           className="btn my-button"
                           onClick={() => {
-                            if (this.props.match.path === "/assistidos") {
+                            if (this.props.match.path === "/lista-de-assistidos") {
                               this.props.dispatch(deleteWatched(temp._id));
                             }
                             if (this.props.match.path === "/lista-para-assistir") {

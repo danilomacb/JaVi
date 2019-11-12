@@ -18,7 +18,7 @@ function* updateWatched(action) {
   yield put({ type: SET_MESSAGE, responseMessage });
 
   if (response.status === 200) {
-    yield put(push("/assistidos"));
+    yield put(push("/lista-de-assistidos"));
   }
 }
 

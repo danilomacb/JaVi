@@ -17,7 +17,7 @@ export default class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/entrar" component={props => <UserForm {...props} title="Entrar" />} />
           <Route path="/cadastrar" component={props => <UserForm {...props} title="Cadastrar" />} />
-          <Route path="/assistidos" component={CardList} />
+          <Route path="/lista-de-assistidos" component={CardList} />
           <Route path="/add-assistido" component={AddForm} />
           <Route path="/assistido/:id" component={AddForm} />
           <Route path="/lista-para-assistir" component={CardList} />
