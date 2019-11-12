@@ -18,10 +18,10 @@ export default class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/entrar" component={props => <UserForm {...props} title="Entrar" />} />
           <Route path="/cadastrar" component={props => <UserForm {...props} title="Cadastrar" />} />
-          <Route path="/assistidos" component={WithAuth(CardList)} />
+          <Route path="/assistidos" component={CardList} />
           <Route path="/add-assistido" component={WithAuth(AddForm)} />
           <Route path="/assistido/:id" component={WithAuth(AddForm)} />
-          <Route path="/lista-para-assistir" component={WithAuth(CardList)} />
+          <Route path="/lista-para-assistir" component={CardList} />
           <Route path="/add-para-assistir" component={WithAuth(AddForm)} />
           <Route path="/para-assistir/:id" component={WithAuth(AddForm)} />
         </Switch>

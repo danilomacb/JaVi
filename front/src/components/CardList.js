@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
 
 import "../styles/cardList.css";
+import { checkToken } from "../state/actions/auth";
 import { getWatchedList, deleteWatched } from "../state/actions/watched";
 import { getToWatchList, deleteToWatch } from "../state/actions/toWatch";
 import Message from "./Message";
 
 class WatchedList extends Component {
   componentDidMount() {
+    this.props.dispatch(checkToken());
+
     if (this.props.match.path === "/assistidos") {
       this.props.dispatch(getWatchedList());
     }
@@ -26,6 +29,10 @@ class WatchedList extends Component {
     }
     if (this.props.match.path === "/lista-para-assistir") {
       tempList = this.props.toWatchList;
+    }
+
+    if (!this.props.token) {
+      return <Redirect to="/entrar" />;
     }
 
     return (
@@ -107,7 +114,11 @@ class WatchedList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watchedList: state.watched.watchedList, toWatchList: state.toWatch.toWatchList };
+  return {
+    token: state.auth.token,
+    watchedList: state.watched.watchedList,
+    toWatchList: state.toWatch.toWatchList
+  };
 }
 
 export default connect(mapStateToProps)(WatchedList);
