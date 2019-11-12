@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
+import { checkToken } from "../state/actions/auth";
 import { getWatched, addWatched, updateWatched } from "../state/actions/watched";
 import { getToWatch, addToWatch, updateToWatch } from "../state/actions/toWatch";
 
 class WatchedForm extends Component {
   componentDidMount() {
+    this.props.dispatch(checkToken());
+
     if (this.props.match.path === "/assistido/:id") {
       this.props.dispatch(getWatched(this.props.match.params.id));
     }
@@ -23,6 +27,10 @@ class WatchedForm extends Component {
     }
     if (this.props.match.path === "/para-assistir/:id" && this.props.toWatch) {
       temp = this.props.toWatch;
+    }
+
+    if (!this.props.token) {
+      return <Redirect to="/entrar" />;
     }
 
     return (
@@ -213,7 +221,11 @@ class WatchedForm extends Component {
 }
 
 function mapStateToProps(state) {
-  return { watched: state.watched.watched, toWatch: state.toWatch.toWatch };
+  return {
+    token: state.auth.token,
+    watched: state.watched.watched,
+    toWatch: state.toWatch.toWatch
+  };
 }
 
 export default connect(mapStateToProps)(WatchedForm);
