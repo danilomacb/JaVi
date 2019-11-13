@@ -13,6 +13,14 @@ import { getToWatchList, deleteToWatch } from "../state/actions/toWatch";
 import Message from "./Message";
 
 class WatchedList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      findOnSearch: undefined
+    };
+  }
+
   componentDidMount() {
     this.props.dispatch(checkToken());
   }
@@ -24,21 +32,30 @@ class WatchedList extends Component {
   }
 
   render() {
-    let tempList;
+    let tempList, search;
 
-    if (this.props.match.path === "/lista-de-assistidos") {
-      if (!this.props.watchedList) {
-        this.props.dispatch(getWatchedList());
-      } else {
-        tempList = this.props.watchedList;
-      }
+    if (
+      !this.state.findOnSearch &&
+      !this.props.watchedList &&
+      this.props.match.path === "/lista-de-assistidos"
+    ) {
+      this.props.dispatch(getWatchedList());
     }
-    if (this.props.match.path === "/lista-para-assistir") {
-      if (!this.props.toWatchList) {
-        this.props.dispatch(getToWatchList());
-      } else {
-        tempList = this.props.toWatchList;
-      }
+    if (
+      !this.state.findOnSearch &&
+      !this.props.toWatchList &&
+      this.props.match.path === "/lista-para-assistir"
+    ) {
+      this.props.dispatch(getToWatchList());
+    }
+    if (this.props.watchedList) {
+      tempList = this.props.watchedList;
+    }
+    if (this.props.toWatchList) {
+      tempList = this.props.toWatchList;
+    }
+    if (this.state.findOnSearch) {
+      tempList = this.state.findOnSearch;
     }
 
     return (
@@ -62,10 +79,30 @@ class WatchedList extends Component {
           </Link>
           {tempList && tempList.length > 0 ? (
             <>
-              <Form>
+              <Form
+                onSubmit={e => {
+                  e.preventDefault();
+
+                  search = search.value;
+
+                  let find = tempList.filter(data => {
+                    let regex = new RegExp(`^${search}`, "gi");
+                    return data.name.match(regex);
+                  });
+
+                  this.setState({ findOnSearch: find });
+                  console.log(search);
+                }}
+              >
                 <Form.Group>
                   <InputGroup>
-                    <Form.Control type="text" placeholder="Pesquisar" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Pesquisar"
+                      ref={node => {
+                        search = node;
+                      }}
+                    />
                     <InputGroup.Append>
                       <button type="submit" className="my-append-button">
                         <FontAwesomeIcon icon={faSearch} className="mx-3" />
