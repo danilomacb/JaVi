@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Card, Row, Col, ButtonGroup } from "react-bootstrap";
+import { Card, Row, Col, ButtonGroup, Form, InputGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt, faPlusSquare } from "@fortawesome/free-regular-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/cardList.css";
 import { checkToken } from "../state/actions/auth";
@@ -60,65 +61,83 @@ class WatchedList extends Component {
             </div>
           </Link>
           {tempList && tempList.length > 0 ? (
-            <Row>
-              {tempList.map((temp, _id) => (
-                <Col key={_id} xs={12} sm={6} lg={4} className="mb-4">
-                  <Card className="my-card">
-                    <Card.Header className="my-card-header">{temp.name}</Card.Header>
-                    <Card.Body>
-                      <div>
-                        {temp.season ? (
-                          <p className="my-card-content">Temporada: {temp.season}</p>
-                        ) : null}
-                        {temp.episode ? (
-                          <p className="my-card-content">Episódio: {temp.episode}</p>
-                        ) : null}
-                        {temp.time ? <p className="my-card-content">Tempo: {temp.time}</p> : null}
-                        {temp.link ? (
-                          temp.link.charAt(0) === "h" ? (
-                            <a href={temp.link} target="__blank" className="my-card-content">
-                              Link: {temp.link}
-                            </a>
+            <>
+              <Form>
+                <Form.Group>
+                  <InputGroup>
+                    <Form.Control type="text" placeholder="Pesquisar" />
+                    <InputGroup.Append>
+                      <button type="submit" className="my-append-button">
+                        <FontAwesomeIcon icon={faSearch} className="mx-3" />
+                      </button>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Form.Group>
+              </Form>
+              <Row>
+                {tempList.map((temp, _id) => (
+                  <Col key={_id} xs={12} sm={6} lg={4} className="mb-4">
+                    <Card className="my-card">
+                      <Card.Header className="my-card-header">{temp.name}</Card.Header>
+                      <Card.Body>
+                        <div>
+                          {temp.season ? (
+                            <p className="my-card-content">Temporada: {temp.season}</p>
+                          ) : null}
+                          {temp.episode ? (
+                            <p className="my-card-content">Episódio: {temp.episode}</p>
+                          ) : null}
+                          {temp.time ? <p className="my-card-content">Tempo: {temp.time}</p> : null}
+                          {temp.link ? (
+                            temp.link.charAt(0) === "h" ? (
+                              <a href={temp.link} target="__blank" className="my-card-content">
+                                Link: {temp.link}
+                              </a>
+                            ) : (
+                              <a
+                                href={"//" + temp.link}
+                                target="__blank"
+                                className="my-card-content"
+                              >
+                                Link: {temp.link}
+                              </a>
+                            )
+                          ) : null}
+                        </div>
+                        <ButtonGroup className="w-100">
+                          {this.props.match.path === "/lista-de-assistidos" ? (
+                            <Link className="btn my-button" to={"/assistido/" + temp._id}>
+                              <FontAwesomeIcon icon={faEdit} className="mr-1" />
+                              Editar
+                            </Link>
                           ) : (
-                            <a href={"//" + temp.link} target="__blank" className="my-card-content">
-                              Link: {temp.link}
-                            </a>
-                          )
-                        ) : null}
-                      </div>
-                      <ButtonGroup className="w-100">
-                        {this.props.match.path === "/lista-de-assistidos" ? (
-                          <Link className="btn my-button" to={"/assistido/" + temp._id}>
-                            <FontAwesomeIcon icon={faEdit} className="mr-1" />
-                            Editar
-                          </Link>
-                        ) : (
-                          <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
-                            <FontAwesomeIcon icon={faEdit} className="mr-1" />
-                            Editar
-                          </Link>
-                        )}
+                            <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
+                              <FontAwesomeIcon icon={faEdit} className="mr-1" />
+                              Editar
+                            </Link>
+                          )}
 
-                        <button
-                          className="btn my-button"
-                          onClick={() => {
-                            if (this.props.match.path === "/lista-de-assistidos") {
-                              this.props.dispatch(deleteWatched(temp._id));
-                            }
-                            if (this.props.match.path === "/lista-para-assistir") {
-                              this.props.dispatch(deleteToWatch(temp._id));
-                            }
-                          }}
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
-                          Deletar
-                        </button>
-                      </ButtonGroup>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+                          <button
+                            className="btn my-button"
+                            onClick={() => {
+                              if (this.props.match.path === "/lista-de-assistidos") {
+                                this.props.dispatch(deleteWatched(temp._id));
+                              }
+                              if (this.props.match.path === "/lista-para-assistir") {
+                                this.props.dispatch(deleteToWatch(temp._id));
+                              }
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
+                            Deletar
+                          </button>
+                        </ButtonGroup>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </>
           ) : (
             <p>Sua lista esta vazia</p>
           )}
