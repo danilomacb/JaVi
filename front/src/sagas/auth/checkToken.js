@@ -1,6 +1,6 @@
 import { all, call, takeEvery, put } from "redux-saga/effects";
 
-import { CHECK_TOKEN, SET_TOKEN, RESET_TOKEN } from "../../state/actions/auth";
+import { CHECK_TOKEN, SET_TOKEN, LOGOUT } from "../../state/actions/auth";
 
 function* checkToken() {
   const endpoint = "/auth/checkToken";
@@ -10,7 +10,7 @@ function* checkToken() {
     yield put({ type: SET_TOKEN, token: document.cookie.replace("token=", "") });
   } else {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    yield put({ type: RESET_TOKEN });
+    yield put({ type: LOGOUT });
   }
 }
 

@@ -14,11 +14,16 @@ import {
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 import "../styles/navigation.css";
-import { checkToken, resetToken } from "../state/actions/auth";
+import { checkToken, logout } from "../state/actions/auth";
 
 class Navigation extends Component {
   componentDidMount() {
     this.props.dispatch(checkToken());
+  }
+
+  logout() {
+    this.props.dispatch(logout());
+    return (document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;");
   }
 
   render() {
@@ -50,13 +55,7 @@ class Navigation extends Component {
           </Nav>
           <Nav>
             {this.props.token ? (
-              <Link
-                to="/"
-                onClick={() => {
-                  this.props.dispatch(resetToken());
-                  return (document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;");
-                }}
-              >
+              <Link to="/" onClick={this.logout.bind(this)}>
                 <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
                 Sair
               </Link>

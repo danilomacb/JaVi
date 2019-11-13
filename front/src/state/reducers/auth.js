@@ -1,10 +1,10 @@
-import { SET_TOKEN, RESET_TOKEN } from "../actions/auth";
+import { SET_TOKEN, LOGOUT } from "../actions/auth";
 
 function auth(state = {}, action) {
   switch (action.type) {
     case SET_TOKEN:
       return { ...state, token: action.token };
-    case RESET_TOKEN:
+    case LOGOUT:
       return { ...state, token: undefined };
     default:
       return state;
