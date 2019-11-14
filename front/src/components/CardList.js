@@ -36,10 +36,18 @@ class WatchedList extends Component {
   }
 
   render() {
-    if (this.props.match.path === "/lista-de-assistidos" && !this.props.watchedList) {
+    if (
+      this.props.match.path === "/lista-de-assistidos" &&
+      !this.props.watchedList &&
+      !this.state.tempList
+    ) {
       this.props.dispatch(getWatchedList());
     }
-    if (this.props.match.path === "/lista-para-assistir" && !this.props.toWatchList) {
+    if (
+      this.props.match.path === "/lista-para-assistir" &&
+      !this.props.toWatchList &&
+      !this.state.tempList
+    ) {
       this.props.dispatch(getToWatchList());
     }
     if (
@@ -78,21 +86,24 @@ class WatchedList extends Component {
               Adicionar Novo
             </div>
           </Link>
-          {this.state.tempList && this.state.tempList.length > 0 ? (
+          {this.state.tempList ? (
             <>
               <Form
                 onSubmit={e => {
                   e.preventDefault();
 
-                  // search = search.value;
+                  search = search.value;
 
-                  // let find = tempList.filter(data => {
-                  //   let regex = new RegExp(`^${search}`, "gi");
-                  //   return data.name.match(regex);
-                  // });
+                  if (search === "") {
+                    return this.setState({ tempList: undefined });
+                  }
 
-                  // this.setState({ findOnSearch: find });
-                  // console.log(search);
+                  let find = this.state.tempList.filter(data => {
+                    let regex = new RegExp(`^${search}`, "gi");
+                    return data.name.match(regex);
+                  });
+
+                  return this.setState({ tempList: find });
                 }}
               >
                 <Form.Group>
