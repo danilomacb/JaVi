@@ -17,7 +17,7 @@ class WatchedList extends Component {
     super(props);
 
     this.state = {
-      findOnSearch: undefined
+      tempList: undefined
     };
   }
 
@@ -25,38 +25,39 @@ class WatchedList extends Component {
     this.props.dispatch(checkToken());
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (!this.props.token) {
       return <Redirect to="/entrar" />;
+    }
+
+    if (this.props.match.path !== prevProps.match.path) {
+      this.setState({ tempList: undefined });
     }
   }
 
   render() {
-    let tempList, search;
-
-    if (
-      !this.state.findOnSearch &&
-      !this.props.watchedList &&
-      this.props.match.path === "/lista-de-assistidos"
-    ) {
+    if (this.props.match.path === "/lista-de-assistidos" && !this.props.watchedList) {
       this.props.dispatch(getWatchedList());
     }
-    if (
-      !this.state.findOnSearch &&
-      !this.props.toWatchList &&
-      this.props.match.path === "/lista-para-assistir"
-    ) {
+    if (this.props.match.path === "/lista-para-assistir" && !this.props.toWatchList) {
       this.props.dispatch(getToWatchList());
     }
-    if (this.props.watchedList) {
-      tempList = this.props.watchedList;
+    if (
+      this.props.match.path === "/lista-de-assistidos" &&
+      this.props.watchedList &&
+      !this.state.tempList
+    ) {
+      this.setState({ tempList: this.props.watchedList });
     }
-    if (this.props.toWatchList) {
-      tempList = this.props.toWatchList;
+    if (
+      this.props.match.path === "/lista-para-assistir" &&
+      this.props.toWatchList &&
+      !this.state.tempList
+    ) {
+      this.setState({ tempList: this.props.toWatchList });
     }
-    if (this.state.findOnSearch) {
-      tempList = this.state.findOnSearch;
-    }
+
+    let search;
 
     return (
       <>
@@ -77,21 +78,21 @@ class WatchedList extends Component {
               Adicionar Novo
             </div>
           </Link>
-          {tempList && tempList.length > 0 ? (
+          {this.state.tempList && this.state.tempList.length > 0 ? (
             <>
               <Form
                 onSubmit={e => {
                   e.preventDefault();
 
-                  search = search.value;
+                  // search = search.value;
 
-                  let find = tempList.filter(data => {
-                    let regex = new RegExp(`^${search}`, "gi");
-                    return data.name.match(regex);
-                  });
+                  // let find = tempList.filter(data => {
+                  //   let regex = new RegExp(`^${search}`, "gi");
+                  //   return data.name.match(regex);
+                  // });
 
-                  this.setState({ findOnSearch: find });
-                  console.log(search);
+                  // this.setState({ findOnSearch: find });
+                  // console.log(search);
                 }}
               >
                 <Form.Group>
@@ -111,8 +112,9 @@ class WatchedList extends Component {
                   </InputGroup>
                 </Form.Group>
               </Form>
+
               <Row>
-                {tempList.map((temp, _id) => (
+                {this.state.tempList.map((temp, _id) => (
                   <Col key={_id} xs={12} sm={6} lg={4} className="mb-4">
                     <Card className="my-card">
                       <Card.Header className="my-card-header">{temp.name}</Card.Header>
