@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Card, Row, Col, ButtonGroup, Form, InputGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt, faPlusSquare } from "@fortawesome/free-regular-svg-icons";
@@ -8,8 +8,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/cardList.css";
 
-import { getWatchedList, deleteWatched } from "../state/actions/watched";
-import { getToWatchList, deleteToWatch } from "../state/actions/toWatch";
+import { deleteWatched } from "../state/actions/watched";
+import { deleteToWatch } from "../state/actions/toWatch";
 import Message from "./Message";
 
 class WatchedList extends Component {
@@ -17,42 +17,52 @@ class WatchedList extends Component {
     super(props);
 
     this.state = {
-      tempList: this.props.tempList
+      tempList: this.props.tempList,
+      loaded: this.props.loaded
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.tempList !== state.tempList && !state.loaded) {
+      return { tempList: props.tempList, loaded: true };
+    }
+
+    return null;
+  }
+
   componentDidUpdate(prevProps) {
-    if (this.props.match.path !== prevProps.match.path) {
-      this.setState({ tempList: this.props.tempList });
+    if (this.props.title !== prevProps.title) {
+      this.setState({ loaded: false });
     }
   }
 
-  setSearch(find) {
-    this.setState({ tempList: find });
+  setSearch(search) {
+    if (search === "") {
+      return this.setState({ tempList: this.props.tempList });
+    }
+
+    let find = this.state.tempList.filter(data => {
+      let regex = new RegExp(`^${search}`, "gi");
+      return data.name.match(regex);
+    });
+
+    return this.setState({ tempList: find });
   }
 
   render() {
     let search;
-
-    console.log(this.props);
 
     return (
       <>
         <Message />
         <div className="my-container">
           <h1 className="text-center">{this.props.title}</h1>
-          {/* <Link
-            to={
-              this.props.match.path === "/lista-de-assistidos"
-                ? "/add-assistido"
-                : "/add-para-assistir"
-            }
-          >
+          <Link to={this.props.add}>
             <div className="my-button mb-4 text-center">
               <FontAwesomeIcon icon={faPlusSquare} className="mr-1" />
               Adicionar Novo
             </div>
-          </Link> */}
+          </Link>
           {this.state.tempList && this.state.tempList.length > 0 ? (
             <>
               <Form
@@ -61,16 +71,7 @@ class WatchedList extends Component {
 
                   search = search.value;
 
-                  if (search === "") {
-                    return this.setSearch(undefined);
-                  }
-
-                  let find = this.state.tempList.filter(data => {
-                    let regex = new RegExp(`^${search}`, "gi");
-                    return data.name.match(regex);
-                  });
-
-                  return this.setSearch(find);
+                  this.setSearch(search);
                 }}
               >
                 <Form.Group>
@@ -121,26 +122,19 @@ class WatchedList extends Component {
                             )
                           ) : null}
                         </div>
-                        {/* <ButtonGroup className="w-100">
-                          {this.props.match.path === "/lista-de-assistidos" ? (
-                            <Link className="btn my-button" to={"/assistido/" + temp._id}>
-                              <FontAwesomeIcon icon={faEdit} className="mr-1" />
-                              Editar
-                            </Link>
-                          ) : (
-                            <Link className="btn my-button" to={"/para-assistir/" + temp._id}>
-                              <FontAwesomeIcon icon={faEdit} className="mr-1" />
-                              Editar
-                            </Link>
-                          )}
+                        <ButtonGroup className="w-100">
+                          <Link className="btn my-button" to={this.props.update + temp._id}>
+                            <FontAwesomeIcon icon={faEdit} className="mr-1" />
+                            Editar
+                          </Link>
 
                           <button
                             className="btn my-button"
                             onClick={() => {
-                              if (this.props.match.path === "/lista-de-assistidos") {
+                              if (this.props.title === "Assistidos") {
                                 this.props.dispatch(deleteWatched(temp._id));
                               }
-                              if (this.props.match.path === "/lista-para-assistir") {
+                              if (this.props.title === "Para Assistir") {
                                 this.props.dispatch(deleteToWatch(temp._id));
                               }
                             }}
@@ -148,7 +142,7 @@ class WatchedList extends Component {
                             <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
                             Deletar
                           </button>
-                        </ButtonGroup> */}
+                        </ButtonGroup>
                       </Card.Body>
                     </Card>
                   </Col>

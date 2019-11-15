@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import CardList from "../components/CardList";
 import { checkToken } from "../state/actions/auth";
-import { getWatchedList, deleteWatched } from "../state/actions/watched";
-import { getToWatchList, deleteToWatch } from "../state/actions/toWatch";
+import { getWatchedList } from "../state/actions/watched";
+import { getToWatchList } from "../state/actions/toWatch";
 
 function mapStateToProps(state) {
   return {
@@ -31,18 +31,27 @@ class CardListContainer extends Component {
 
     if (this.props.match.path === "/lista-de-assistidos" && this.props.watchedList) {
       return (
-        <CardList match={this.props.match} tempList={this.props.watchedList} title={"Assistidos"} />
+        <CardList
+          tempList={this.props.watchedList}
+          loaded={false}
+          title={"Assistidos"}
+          add={"/add-assistido"}
+          update={"/assistido/"}
+        />
       );
     }
     if (this.props.match.path === "/lista-para-assistir" && this.props.toWatchList) {
       return (
         <CardList
-          match={this.props.match}
           tempList={this.props.toWatchList}
+          loaded={false}
           title={"Para Assistir"}
+          add={"/add-para-assistir"}
+          update={"/para-assistir/"}
         />
       );
     }
+
     return null;
   }
 }
