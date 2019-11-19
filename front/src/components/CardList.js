@@ -30,8 +30,8 @@ class WatchedList extends Component {
     return null;
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.title !== prevProps.title) {
+  componentDidUpdate() {
+    if (this.props.tempList !== this.state.tempList) {
       this.setState({ loaded: false });
     }
   }
