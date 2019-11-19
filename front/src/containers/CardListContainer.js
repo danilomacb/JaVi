@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 import CardList from "../components/CardList";
 import { checkToken } from "../state/actions/auth";
@@ -24,11 +23,13 @@ class CardListContainer extends Component {
     this.props.dispatch(getToWatchList());
   }
 
-  render() {
+  componentDidUpdate() {
     if (!this.props.token) {
-      return <Redirect to="/entrar" />;
+      return this.props.history.push("/entrar");
     }
+  }
 
+  render() {
     if (this.props.match.path === "/lista-de-assistidos" && this.props.watchedList) {
       return (
         <CardList

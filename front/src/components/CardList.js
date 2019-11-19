@@ -22,17 +22,9 @@ class WatchedList extends Component {
     };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.tempList !== state.tempList && !state.loaded) {
-      return { tempList: props.tempList, loaded: true };
-    }
-
-    return null;
-  }
-
-  componentDidUpdate() {
-    if (this.props.tempList !== this.state.tempList) {
-      this.setState({ loaded: false });
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.tempList !== nextProps.tempList) {
+      this.setState({ tempList: nextProps.tempList });
     }
   }
 
@@ -41,7 +33,7 @@ class WatchedList extends Component {
       return this.setState({ tempList: this.props.tempList });
     }
 
-    let find = this.state.tempList.filter(data => {
+    let find = this.props.tempList.filter(data => {
       let regex = new RegExp(`^${search}`, "gi");
       return data.name.match(regex);
     });
