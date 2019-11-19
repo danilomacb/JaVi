@@ -18,13 +18,13 @@ class WatchedList extends Component {
 
     this.state = {
       tempList: this.props.tempList,
-      loaded: this.props.loaded
+      emptyList: "Sua lista está vazia"
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.tempList !== nextProps.tempList) {
-      this.setState({ tempList: nextProps.tempList });
+      this.setState({ tempList: nextProps.tempList, emptyList: "Sua lista está vazia" });
     }
   }
 
@@ -37,6 +37,10 @@ class WatchedList extends Component {
       let regex = new RegExp(`^${search}`, "gi");
       return data.name.match(regex);
     });
+
+    if (find.length === 0) {
+      return this.setState({ tempList: find, emptyList: "Nenhum resultado encontrado" });
+    }
 
     return this.setState({ tempList: find });
   }
@@ -55,35 +59,38 @@ class WatchedList extends Component {
               Adicionar Novo
             </div>
           </Link>
+          {this.props.tempList && this.props.tempList.length > 0 ? (
+            <Form
+              className="mb-4"
+              onSubmit={e => {
+                e.preventDefault();
+
+                search = search.value;
+
+                this.setSearch(search);
+              }}
+            >
+              <Form.Group>
+                <InputGroup>
+                  <Form.Control
+                    type="text"
+                    placeholder="Pesquisar"
+                    ref={node => {
+                      search = node;
+                    }}
+                  />
+                  <InputGroup.Append>
+                    <button type="submit" className="my-append-button">
+                      <FontAwesomeIcon icon={faSearch} className="mx-3" />
+                    </button>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form.Group>
+            </Form>
+          ) : null}
+
           {this.state.tempList && this.state.tempList.length > 0 ? (
             <>
-              <Form
-                onSubmit={e => {
-                  e.preventDefault();
-
-                  search = search.value;
-
-                  this.setSearch(search);
-                }}
-              >
-                <Form.Group>
-                  <InputGroup>
-                    <Form.Control
-                      type="text"
-                      placeholder="Pesquisar"
-                      ref={node => {
-                        search = node;
-                      }}
-                    />
-                    <InputGroup.Append>
-                      <button type="submit" className="my-append-button">
-                        <FontAwesomeIcon icon={faSearch} className="mx-3" />
-                      </button>
-                    </InputGroup.Append>
-                  </InputGroup>
-                </Form.Group>
-              </Form>
-
               <Row>
                 {this.state.tempList.map((temp, _id) => (
                   <Col key={_id} xs={12} sm={6} lg={4} className="mb-4">
@@ -142,7 +149,7 @@ class WatchedList extends Component {
               </Row>
             </>
           ) : (
-            <p>Sua lista esta vazia</p>
+            <p>{this.state.emptyList}</p>
           )}
         </div>
       </>
