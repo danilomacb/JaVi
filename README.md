@@ -1,6 +1,16 @@
-# Instalação
+# About
 
-O projeto tem dependências tanto na pasta **api** quanto na pasta **front**, então você precisa entrar em cada uma e executar:
+JaVi is a platform that has as objective leave saved movies and series that you already watch or you want to watch.
+
+# Technologies
+
+- Back-end: Node
+- Database: MongoDB
+- Front-end: React
+
+# Instalation
+
+This repo contains 2 projects (api and front), and you need to install all dependencies from each one, so enter in each folder project and run:
 
 ```bash
 # /javi/api
@@ -10,36 +20,32 @@ npm i
 npm i
 ```
 
-Você também irá precisar criar um arquivo **.env** dentro da pasta **api** com as seguintes variáveis:
+You will also need create a `.env` file inside the api folder with the follow enviroment variables:
 
-- JWT_SECRET: irá conter uma senha para o jason web token, que pode conter letras e números;
-- SALT_ROUNDS: irá conter um número inteiro, que será usado para gerar o hash do bcryptjs;
-- MONGO_URI: irá conter a url do mongo, recomendo utilizar `mongodb://localhost:27017/javi` ;
-- API_PORT: irá conter a porta onde a api será executada, lembrando que o React roda na porta `3000`, então é melhor utilizar outra porta, eu uso a `3001`.
+- JWT_SECRET: a string that will be used by Jason Web Token, for tests I use `secret`
+- SALT_ROUNDS: a integer that will be used by bcryptjs, for tests I use `10`
+- MONGO_URI: the MongoDB url, I recomend use `mongodb://localhost:27017/javi`
+- API_PORT: the port where the api will run, I recomend use `3001`
 
-# Para Executar
+# Running
 
-Primeiro você precisar estar com o mongo executando na sua máquina, depois você precisa iniciar a api. O start está configurado com nodemon, então se forem feitas alterações no código, não é necessário reiniciar a api.
+Remember, the api uses MongoDB to store data, so you will need him installed and executing. After that, we just need to run the api and front, and the React will open the application on your browser.
 
 ```bash
 # /javi/api
 npm start
-```
 
-Agora você precisa iniciar o React, sem finalizar a api, então recomendo abrir outro terminal para isso.
-
-```bash
 # /javi/front
 npm start
 ```
 
-# Configurações do VsCode
+# VSCode Configs
 
-Tem uma pasta na raíz do projeto chamada .vscode com 2 arquivos, o **settings.json** que serve para executar as configurações do arquivo **.prettierrc** que também está salvo na raíz, se você tiver extensão do prettier no seu VsCode, sempre que um arquivo for salvo, o prettier irá formatar o arquivo. O arquivo **launch.json** contém as configurações do debugger, porém para executar o debugger é necessário estar executando o `debug`.
+The `.vscode` folder contains a set of configurations, that run the prettier based on the `.prettierrc` file, and it's also configurated to run nodemon on debugger, to do that just run the following command inside the VSCode terminal.
 
 ```bash
 # /javi/api
 npm run debug
 ```
 
-Você pode executar esse comando do terminal do próprio VsCode, depois disso é só dar `F5` que o debugger irá funcionar normalmente.
+After that just press `F5` and select the `node --inspect src` option.
