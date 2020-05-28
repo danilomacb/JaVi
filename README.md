@@ -4,6 +4,7 @@ JaVi is a platform that has as objective leave saved movies and series that you 
 
 # Technologies
 
+- Language: JavaScript
 - Back-end: Node
 - Database: MongoDB
 - Front-end: React
